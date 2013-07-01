@@ -5,4 +5,7 @@ class mysql {
     package { 'mysql' :
         ensure => 'installed',
     }
+    service { 'mysql':
+        enable => true,
+    }
 } # End of class 'mysql'
