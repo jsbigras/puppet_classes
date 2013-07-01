@@ -1,0 +1,3 @@
+#!/bin/bash
+
+su - root -c "/opt/colibria/telcel/current-adm/bin/colibria.sh $1;"
