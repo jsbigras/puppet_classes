@@ -11,4 +11,7 @@ class basics {
     package { 'screen' :
         ensure => 'installed',
     }
+    package { 'git' :
+        ensure => 'installed',
+    }
 } # End of class 'basics'
