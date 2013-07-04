@@ -3,7 +3,7 @@
 
 class opsrepo {
     yumrepo { "ops":
-        baseurl => "http://tm-repos.synchronica.com/ops",
+        baseurl => "http://tm-repos.synchronica.com/ops/\$releasever",
         descr => "Myriad Ops yum repo",
         enabled => 1,
         gpgcheck => 0
