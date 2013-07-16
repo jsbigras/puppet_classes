@@ -16,7 +16,7 @@
 
 include ntp::install, ntp::config, ntp::service
 
-class memcached(
+class ntp(
    $version = "present",
    $enable = true,
    $start = true,
