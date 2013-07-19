@@ -11,7 +11,16 @@ class basics {
     package { 'screen' :
         ensure => 'installed',
     }
+    package { 'unzip' :
+        ensure => 'installed',
+    }
     package { 'git' :
+        ensure => 'installed',
+    }
+    package { 'tcpdump' :
+        ensure => 'installed',
+    }
+    package { 'telnet' :
         ensure => 'installed',
     }
 } # End of class 'basics'
