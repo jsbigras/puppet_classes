@@ -11,10 +11,10 @@ class basics {
     package { 'screen' :
         ensure => 'installed',
     }
-    package { 'unzip' :
+    package { 'git' :
         ensure => 'installed',
     }
-    package { 'git' :
+    package { 'unzip' :
         ensure => 'installed',
     }
     package { 'tcpdump' :
