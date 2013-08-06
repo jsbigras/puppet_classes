@@ -12,5 +12,6 @@ class rsyslog::config {
   file{'/etc/rsyslog/rsyslog.d':
     source => 'puppet:///modules/rsyslog/rsyslog.d',
     recurse => true,
+    ensure => 'directory',
   }
 }
