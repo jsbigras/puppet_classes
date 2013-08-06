@@ -5,11 +5,11 @@ class rsyslog::config {
     mode    => 644,
   }
 
-  file{'/etc/rsyslog/rsyslog.conf':
+  file{'/etc/rsyslog.conf':
     source => 'puppet:///modules/rsyslog/rsyslog.conf',
   }
 
-  file{'/etc/rsyslog/rsyslog.d':
+  file{'/etc/rsyslog.d':
     source => 'puppet:///modules/rsyslog/rsyslog.d',
     recurse => true,
     ensure => 'directory',
