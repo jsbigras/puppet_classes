@@ -7,7 +7,7 @@
 
 include rsyslog::server::config, rsyslog::service
 
-class rsyslog::server() {
+class rsyslog::server {
   class{'rsyslog::server::config': } ~>
   class{'rsyslog::service': } ->
   Class["rsyslog::server"]
