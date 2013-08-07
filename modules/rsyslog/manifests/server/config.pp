@@ -1,4 +1,4 @@
-class rsyslog::config {
+class rsyslog::server::config {
   File{
     owner   => root,
     group   => root,
