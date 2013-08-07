@@ -5,7 +5,7 @@
 # === Parameters
 # none
 
-include rsyslog::server::config, rsyslog::service
+include rsyslog::server::config
 
 class rsyslog::server {
   class{'rsyslog::server::config': } ~>
