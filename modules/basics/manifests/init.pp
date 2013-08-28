@@ -1,5 +1,5 @@
 # Class: basics
-# This module manages the basics that shoudl apply to all servers
+# This module manages the basics that should apply to all servers
 
 class basics {
     package { 'zip' :
