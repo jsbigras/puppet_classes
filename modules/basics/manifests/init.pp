@@ -24,7 +24,10 @@ class basics {
     package { 'telnet' :
         ensure => 'installed',
     }
-    package { 'vim' :
+    package { 'vim-common' :
+        ensure => 'installed',
+    }
+    package { 'vim-minimal' :
         ensure => 'installed',
     }
 } # End of class 'basics'
