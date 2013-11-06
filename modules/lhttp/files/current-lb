@@ -1,3 +1,0 @@
-#!/bin/bash
-
-su - root -c "/opt/colibria/telcel/current-lb/bin/colibria.sh $1;"
