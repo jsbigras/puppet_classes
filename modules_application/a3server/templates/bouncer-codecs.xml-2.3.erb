@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<configuration>
+    <bouncer-codec type="default" id="msisdn-bouncer">
+        <configuration>
+		<header name="x-unity-msisdn" pattern="(.*)" field="msisdn"/>
+<% bouncerHeader.zip(idField).each do | header, field | -%>
+		<header name="<%= header %>" pattern="(.*)" field="<%= field %>"/>
+<% end -%>
+        </configuration>
+    </bouncer-codec>
+</configuration>

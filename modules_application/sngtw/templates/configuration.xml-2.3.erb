@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<configuration>
+
+    <sngtw_rps_in_admin>
+        <listening-interface><%= ipaddress %></listening-interface>
+        <listening-port><%= l_port_ug_admin %></listening-port>
+        <log>
+            <exclude-content-type>image/jpeg</exclude-content-type>
+            <exclude-content-type>image/pjpeg</exclude-content-type>
+            <exclude-content-type>image/gif</exclude-content-type>
+            <exclude-content-type>image/png</exclude-content-type>
+            <exclude-content-type>image/x-png</exclude-content-type>
+            <exclude-content-type>image/tiff</exclude-content-type>
+            <exclude-content-type>image/bmp</exclude-content-type>
+            <exclude-content-type>audio/mpeg</exclude-content-type>
+            <exclude-content-type>audio/x-wav</exclude-content-type>
+            <exclude-content-type>video/x-msvideo</exclude-content-type>
+            <exclude-content-type>video/mpeg</exclude-content-type>
+            <exclude-content-type>video/quicktime</exclude-content-type>
+            <exclude-content-type>video/mp4</exclude-content-type>
+            <exclude-content-type>text/x-vcard</exclude-content-type>
+        </log>
+        <li>
+                <trace-base-path>/var/log/nokia/nmp/traces</trace-base-path>
+                <watched-header>Authorization</watched-header>
+                <suspect-file>${file.dir}/traces/suspects.li</suspect-file>
+        </li>
+    </sngtw_rps_in_admin>
+
+    <sngtw_rps_in_oauth>
+        <listening-interface><%= ipaddress %></listening-interface>
+        <listening-port><%= l_port_ug_oauth %></listening-port>
+        <li>
+                <trace-base-path>/var/log/nokia/nmp/traces</trace-base-path>
+                <watched-header>Authorization</watched-header>
+                <suspect-file>${file.dir}/traces/suspects.li</suspect-file>
+        </li>
+    </sngtw_rps_in_oauth>
+
+    <sngtw_rps_in_trusted_auth>
+        <listening-interface><%= ipaddress %></listening-interface>
+        <listening-port><%= l_port_ug_tauth %></listening-port>
+        <li>
+                <trace-base-path>/var/log/nokia/nmp/traces</trace-base-path>
+                <watched-header>Authorization</watched-header>
+                <suspect-file>${file.dir}/traces/suspects.li</suspect-file>
+        </li>
+    </sngtw_rps_in_trusted_auth>
+
+    <sngtw_csp_in>
+        <listening-interface><%= ipaddress %></listening-interface>
+        <listening-port>9010</listening-port>
+        <li>
+                <trace-base-path>/var/log/nokia/nmp/traces</trace-base-path>
+                <watched-header>Authorization</watched-header>
+                <suspect-file>${file.dir}/traces/suspects.li</suspect-file>
+        </li>
+    </sngtw_csp_in>
+
+    <!--<sngtw_mmp_in>
+        <listening-interface><%= ipaddress %></listening-interface>
+        <listening-port>8007</listening-port>-->
+    <!-- Platform LI configuration -->
+    <!--<li>-->
+    <!--The path where trace files will be located-->
+    <!--<trace-base-path>file:///...</trace-base-path>-->
+    <!--The headers to watch-->
+    <!--<watched-header>x-unity-deviceid</watched-header>-->
+    <!--<watched-header>x-unity-imei</watched-header>-->
+    <!--<watched-header>x-unity-imsi</watched-header>-->
+    <!--<watched-header>x-unity-msisdn</watched-header>-->
+    <!--The suspect file... one suspect value per line.-->
+    <!--<suspect-file>file:///...</suspect-file>-->
+    <!--</li>-->
+    <!--</sngtw_mmp_in>-->
+
+    <credsStore>
+        <credentials-store-cache-id>credentials</credentials-store-cache-id>
+    </credsStore>
+
+    <sso>
+        <clientToGatewayInfo>
+            <consumerInfo>
+                <!-- key / secret for MRE clients -->
+                <key>W4XXmdfglN8EZjVjkYVU</key>
+                <secret>wQpmVjxkJVW1xplBpO8IzWfstXAIJM8ndnhy2eYO12ZUPaEY2g</secret>
+                <signAllQueryParams>true</signAllQueryParams>
+                <signExtOauthParams>true</signExtOauthParams>
+            </consumerInfo>
+            <consumerInfo>
+                <!-- key / secret for all other clients -->
+                <key>ZXdxVEJVKSUjJEBVJVQ=</key>
+                <secret>A/82ARN+Z3RZVU4jUCUxI1hfQ0orXiQrJlVKJE5eWUtDQ3Rnanlo</secret>
+                <signAllQueryParams>true</signAllQueryParams>
+                <signExtOauthParams>true</signExtOauthParams>
+            </consumerInfo>
+            <!-- other consumer key/secret. Maybe not used anymore. -->
+            <consumerInfo>
+                <key>5b39b20ea097f110922784d60ed18553</key>
+                <secret>A/82ARN+wipB33fTcAlLFaoQVfoN5AR8o5rkL525+0bFEeOEOsRRV7WRpswmIv/R</secret>
+                <signAllQueryParams>true</signAllQueryParams>
+                <signExtOauthParams>true</signExtOauthParams>
+            </consumerInfo>
+            <consumerInfo>
+                <key>drawkOcEcHulfufagocBinBeaHiavnuv</key>
+                <secret>avSooHabTyGhehishIjVotpiksoophyltUvmaywiagTadtiphbovSienMoflald9</secret>
+                <signAllQueryParams>true</signAllQueryParams>
+                <signExtOauthParams>true</signExtOauthParams>
+            </consumerInfo>
+        </clientToGatewayInfo>
+    </sso>
+
+    <!-- resource binder config:
+         internal is the name of the header that is internally available to the application.
+         record-number 1-5 is used to write to transaction record http.header.1 to http.header.5 -->
+    <http_rps>
+        <header-map>
+            <!-- empty for now. Below is an example. -->
+            <!--  <header external="x-operator-header" internal="HEADER1" record-number="1"/> -->
+        </header-map>
+    </http_rps>
+
+    <!--<http_csp>-->
+        <!--<header-map>-->
+           <!--<header external="X-QATOOL-REQ-ID" internal="HEADER1" record-number="1"/>-->
+        <!--</header-map>-->
+    <!--</http_csp>-->
+
+    <esp>
+        <espEnabled>true</espEnabled>
+        <espUrl>http://<%= int_vip_common %>:<%= v_port_espws %></espUrl>
+        <esp-cache-ttl-minutes>720</esp-cache-ttl-minutes>
+        <!--  a configuration reload will clear the cache if the uid below is updated. This is used to
+              clear the cache only if desired. Any string less than 100 chars is valid -->
+        <esp-cache-clear-uid>1</esp-cache-clear-uid>
+    </esp>
+
+    <SmtpFallback>
+        <!-- Defines the URL <  smtp[s]://Host:port[?starttls]  > of the the SMTP fallback  -->
+        <!-- Do we need info on authentication scheme/ security scheme ??? -->
+        <!--url>smtp://snowball.oz-communications.com:25</url-->
+        <url>http://<%= int_vip_common %>:<%= v_port_smtp %></url>
+        <!-- boolean to tell whether or not to use the SMTP fallback on failure (missing, invalid or down) -->
+        <useSmtpFallbackOnFailure>true</useSmtpFallbackOnFailure>
+        <!-- boolean to tell whether or not to set use the SMTP fallback in the ESP on create service failure  -->
+        <useSmtpFallbackOnCreateService>true</useSmtpFallbackOnCreateService>
+    </SmtpFallback>
+
+    <UserProvisioning>
+        <userProvisioningUrl>http://192.168.230.221:13145/userprovisioning/services/UserProvisioning?wsdl</userProvisioningUrl>
+        <providerId>icq</providerId>
+        <pluginId>icq</pluginId>
+    </UserProvisioning>
+
+    <subscription>
+        <taskManagerUrl>http://<%= int_vip_cluster %>:<%= v_port_tm %></taskManagerUrl>
+        <!-- see JIRA story NMSG-1016
+The value of this element is a comma separated list of provider ids which we don’t want to send subscription to PushServer. -->
+        <excludeProviderIds>gtalk,icq,yahoo_messenger</excludeProviderIds>
+    </subscription>
+
+    <aaa>
+        <!--  admin URL of the AAA server used to fetch AAA token information or send authorization requests -->
+        <aaaUrl>http://<%= int_vip_cluster %>:<%= v_port_aaa_admin %></aaaUrl>
+        <http-client>
+            <read-timeout-ms>10000</read-timeout-ms>
+            <request-timeout-ms>15000</request-timeout-ms>
+        </http-client>
+    </aaa>
+
+    <pfs>
+        <pfsUrl>http://<%= int_vip_common %>:<%= v_port_espws %></pfsUrl>
+    </pfs>
+
+    <transactionrecorder>
+        <rps>
+            <recorderContextId><%= prefix %>_rps</recorderContextId>
+        </rps>
+        <mmt>
+            <recorderContextId><%= prefix %>_mmt</recorderContextId>
+        </mmt>
+        <mmp>
+            <recorderContextId><%= prefix %>_mmp</recorderContextId>
+        </mmp>
+        <csp>
+            <recorderContextId><%= prefix %>_csp</recorderContextId>
+        </csp>
+    </transactionrecorder>
+
+    <!-- The amdin rps port so we can re inject http request so it deletes subscription-->
+    <reinjectclient>
+        <rps-admin-listening-port><%= l_port_ug_admin %></rps-admin-listening-port>
+    </reinjectclient>
+</configuration>

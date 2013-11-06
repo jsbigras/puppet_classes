@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<configuration>
+	<http>
+		<listening-interface><%= ipaddress %></listening-interface>
+		<listening-port><%= v_port_tm %></listening-port>
+	</http>
+	<taskmanager>
+		<task-server-type>pushserver</task-server-type>
+		<store class="com.nokia.nmp.taskmanager.store.JdbcTaskStore">
+			<property name="datasource" value="MySqlFailOverPoolDS" />
+			<property name="reassignationDelay" value="360" />
+		</store>
+		<recovery-task>
+			<offset>false</offset>
+		</recovery-task>
+	</taskmanager>
+</configuration>

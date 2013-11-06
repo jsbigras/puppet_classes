@@ -1,0 +1,16 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+fi
+
+export HISTTIMEFORMAT="%D %T "
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/bin:/sbin:/usr/sbin:/bin:/usr/bin
+
+export PATH
+unset USERNAME
+umask 022

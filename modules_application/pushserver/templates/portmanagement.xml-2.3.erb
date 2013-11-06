@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<CONFIGURATION service="portmanagement">
+    <port-management-service>
+        <!-- All port managers in the service should specify port ranges and ips that are non-conflicting. -->
+        <!-- Example of a managed port manager. The hosts and port range are optional.
+                   If no hosts are specified, all ips configured in the machine will be used and if no
+                   port range is specified, the port range will be 1024 to 65535.-->
+        <port-manager id="PushServerTcpConfig" type="managed">
+<% if has_variable?('ipaddress_eth0_1') -%>
+            <host><%= ipaddress_eth0_1 %></host>
+<% else -%>
+            <host><%= ipaddress_eth0 %></host>
+<% end -%>
+            <port min="6000" max="65535" />
+        </port-manager>
+
+        <!-- A port manager with id="default" is mandatory. -->
+        <port-manager id="default" type="ephemeral" />
+
+        <!-- Example of a ephemeral port manager.
+   <portManager id="manager2" type="ephemeral" />  -->
+    </port-management-service>
+</CONFIGURATION>

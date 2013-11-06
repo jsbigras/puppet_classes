@@ -1,0 +1,37 @@
+host <%= auth_server1_name -%> <%= auth_server2_name %>
+
+base dc=hosting,dc=ops
+
+timelimit 10
+bind_timelimit 10
+bind_policy soft
+
+scope sub
+
+binddn cn=bind ldap,ou=Users,ou=OB,dc=hosting,dc=ops
+bindpw Hello123!@#
+
+sudoers_base ou=SUDOers,ou=OB,dc=hosting,dc=ops
+#SUDOERS_DEBUG 2
+nss_base_passwd ou=Users,ou=OB,dc=hosting,dc=ops?sub?memberof=cn=<%= ou -%>-<%= cn -%>,ou=<%= ou -%>,ou=login_permissions,ou=OB,dc=hosting,dc=ops
+nss_base_shadow ou=Users,ou=OB,dc=hosting,dc=ops?sub
+nss_base_group ou=Groups,ou=OB,dc=hosting,dc=ops?sub
+
+
+   nss_map_objectclass posixAccount user
+   nss_map_objectclass shadowAccount user
+   nss_map_objectclass posixGroup Group
+   nss_map_attribute uid sAMAccountName
+   nss_map_attribute uidNumber uidNumber
+   nss_map_attribute gidNumber gidNumber
+   nss_map_attribute loginShell loginShell
+   nss_map_attribute gecos name
+#   nss_map_attribute homeDirectory unixHomeDirectory
+   nss_map_attribute uniqueMember msSFU30PosixMember
+   nss_map_attribute cn cn
+
+logdir /var/log/
+# debug 9
+ssl no
+pam_password ad
+tls_cacertdir /etc/openldap/cacerts

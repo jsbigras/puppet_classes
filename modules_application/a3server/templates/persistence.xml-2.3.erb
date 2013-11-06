@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<CONFIGURATION service="persistence">
+	<persistence>
+		<datasources>
+			<datasource jndi-name="AaaMysqlPrimaryDataSource" class-name="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
+				<property name="user" value="<%= sch_sql_col_tbl.at(0) %>" />
+				<property name="password" value="<%= sch_pwd %>" />
+				<property name="url" value="jdbc:mysql://<%= db_master %>:3306/<%= sch_sql_col_tbl.at(0) %>?useUnicode=true&amp;characterEncoding=UTF-8" />
+			</datasource>
+			<datasource jndi-name="AaaMysqlSecondaryDataSource" class-name="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
+				<property name="user" value="<%= sch_sql_col_tbl.at(0) %>" />
+				<property name="password" value="<%= sch_pwd %>" />
+<% if db_slave != '' -%>
+				<property name="url" value="jdbc:mysql://<%= db_slave %>:3306/<%= sch_sql_col_tbl.at(0) %>?useUnicode=true&amp;characterEncoding=UTF-8" />
+<% else -%>
+				<property name="url" value="jdbc:mysql://<%= db_master %>:3306/<%= sch_sql_col_tbl.at(0) %>?useUnicode=true&amp;characterEncoding=UTF-8" />
+<% end -%>
+			</datasource>
+			<non-transacted-pool jndi-name="AaaPrimaryDsPool" datasource-ref="AaaMysqlPrimaryDataSource" min="10" max="100">
+				<property name="testQuery" value="SELECT 1 FROM DUAL" />
+				<property name="maxIdle" value="120" />
+			</non-transacted-pool>
+			<non-transacted-pool jndi-name="AaaSecondaryDsPool" datasource-ref="AaaMysqlSecondaryDataSource" min="10" max="100">
+				<property name="testQuery" value="SELECT 1 FROM DUAL" />
+				<property name="maxIdle" value="120" />
+			</non-transacted-pool>
+			<failover-pool jndi-name="AaaDataSourceFailOverPoolDataSource">
+				<datasource-ref jndi-name="AaaPrimaryDsPool" />
+				<datasource-ref jndi-name="AaaSecondaryDsPool" />
+			</failover-pool>
+			<sharded-pool jndi-name="AaaShardedDataSource">
+				<shard index-range="0-255" datasource-ref="AaaDataSourceFailOverPoolDataSource" />
+			</sharded-pool>
+		</datasources>
+	</persistence>
+</CONFIGURATION>

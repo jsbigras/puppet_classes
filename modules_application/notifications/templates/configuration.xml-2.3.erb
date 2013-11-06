@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<configuration>
+    <http>
+        <external-ip><%= ipaddress %></external-ip>
+        <listening-interface><%= ipaddress %></listening-interface>
+        <listening-port><%= l_port_ns_http %></listening-port>
+    </http>
+    
+    <lhttp>
+        <listening-interface><%= ipaddress %></listening-interface>
+        <listening-port><%= l_port_ns_lhttp %></listening-port>
+        <idleness-timeout-in-seconds>600</idleness-timeout-in-seconds>
+    </lhttp>
+    
+    <loopback>
+        <listening-interface><%= ipaddress %></listening-interface>
+        <listening-port><%= l_port_ns_loop %></listening-port>
+    </loopback>
+    
+    <tcpcir>
+        <listening-interface><%= ipaddress %></listening-interface>
+        <listening-port><%= l_port_ns_tcpcir %></listening-port>
+    </tcpcir>
+    
+    <aaaClient>
+        <aaaUrl>http://<%= int_vip_cluster %>:<%= v_port_aaa_admin %></aaaUrl>
+    </aaaClient>
+    
+    <sso>
+        <clientToGatewayInfo>
+            <consumerInfo>
+                <!-- key / secret for all other clients -->
+                <key>ZXdxVEJVKSUjJEBVJVQ=</key>
+                <secret>A/82ARN+Z3RZVU4jUCUxI1hfQ0orXiQrJlVKJE5eWUtDQ3Rnanlo</secret>
+                <signAllQueryParams>true</signAllQueryParams>
+                <signExtOauthParams>true</signExtOauthParams>
+            </consumerInfo>
+        </clientToGatewayInfo>
+    </sso>
+
+</configuration>

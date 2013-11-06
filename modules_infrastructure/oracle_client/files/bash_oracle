@@ -1,0 +1,13 @@
+# Oracle
+export ORACLE_BASE=/u01/app/oracle
+export ORACLE_HOME=$ORACLE_BASE/product/10.2.0/client_1
+export NLS_LANG=AMERICAN_AMERICA.UTF8
+export NLS33=$ORACLE_HOME/ocommon/nls/admin/data
+export LD_LIBRARY_PATH=$ORACLE_HOME/lib
+export PATH=$PATH:$ORACLE_HOME/bin
+export CLASSPATH=$ORACLE_HOME/JRE:$ORACLE_HOME/jlib:$ORACLE_HOME/rdbms/jlib:$ORACLE_HOME/network/jlib
+
+export PATH=$PATH:$ORACLE_HOME/OPatch
+unset USERNAME
+
+ulimit -c 1000000 > /dev/null 2>&1

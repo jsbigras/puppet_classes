@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<CONFIGURATION service="caching">
+    <caches>
+        <cache id="tokens">
+            <memory max-size="<%= tokensmemmaxsize %>"/>
+        </cache>
+        <cache id="channel">
+        	<remote type="cacheserver">
+                <http-client>
+                    <read-timeout-ms>10000</read-timeout-ms>
+                    <connect-timeout-ms>10000</connect-timeout-ms>
+                </http-client>
+                <max-error-failover>10</max-error-failover>
+                <max-time-failover unit="SECONDS">10</max-time-failover>
+                <ping-period unit="SECONDS">5</ping-period>
+                <reroute-delay unit="MINUTES">20</reroute-delay>
+<% if cache_secondary != '' -%>
+                <store uri="http://<%= cache_primary %>:<%= l_port_cache %>/nmp-cache, http://<%= cache_secondary %>:<%= l_port_cache %>/nmp-cache"/>
+<% else -%>
+                <store uri="http://<%= cache_primary %>:<%= l_port_cache %>/nmp-cache, http://<%= cache_primary %>:<%= l_port_cache %>/nmp-cache"/>
+<% end -%>
+            </remote>
+        </cache>
+    </caches>
+</CONFIGURATION>

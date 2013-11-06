@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<configuration>
+<% countryid.zip(country_code,national_prefix,national_prefix_required,validate_country).each do | countryid, countrycode, prefix, required, valid | -%>
+<% if countryid == "simple" -%>
+	<msisdn-validator type="simple" id="<%= countryid %>"/>
+<% else -%>
+	<msisdn-validator type="default" id="<%= countryid %>">
+		<configuration>
+			<msisdn-format country-code="<%= countrycode %>" national-prefix="<%= prefix %>" national-prefix-required="<%= required %>" validate-country="<%= valid %>"/>
+		</configuration>
+	</msisdn-validator>
+<% end -%>
+
+<% end -%>
+</configuration>

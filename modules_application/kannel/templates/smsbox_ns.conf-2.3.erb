@@ -1,0 +1,45 @@
+# ------------------------------------------
+# Kannel Core
+# ------------------------------------------
+
+group = core
+smsbox-port = 3001
+
+
+# ------------------------------------------
+# SMS BOX config
+# ------------------------------------------
+
+group = smsbox
+smsbox-id = smsbox_ns
+bearerbox-host = 127.0.0.1
+bearerbox-port = 3001
+sendsms-port = <%= v_port_kannel_ns %>
+sendsms-chars = "0123456789 +-"
+log-file = "/var/log/nokia/kannel/smsbox_ns.log"
+access-log = "/var/log/nokia/kannel/smsbox_ns.log"
+log-level = 0
+http-request-retry = 0
+http-queue-delay = 0
+max-pending-requests = 512
+global-sender = <%= v_port_kannel_ns %>
+
+
+# ------------------------------------------
+# SMS services (MO handlers)
+# ------------------------------------------
+
+group = sms-service
+keyword = default
+omit-empty = true
+post-url = "http://127.0.0.1:43008/ns"
+
+
+# ------------------------------------------
+# SendSMS User Groups
+# ------------------------------------------
+
+group = sendsms-user
+username = <%= kannel_username_1 %>
+password = <%= kannel_password_1 %>
+forced-smsc = csoft_s3

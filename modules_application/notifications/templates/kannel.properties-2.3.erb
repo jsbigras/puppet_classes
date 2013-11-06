@@ -1,0 +1,21 @@
+# This value is correct for all environments (Development, Pre-production, Production...)
+
+kannel.url=http://<%= int_vip_common %>:<%= v_port_kannel_ns %>/cgi-bin/sendsms
+###########################################################################
+## Note that the %NETWORK_CODE% must be replace with a real network code ##
+###########################################################################
+
+<% networkCode.zip(descNamePerNC).each do | networkCode, description | -%>
+<% operatorName.zip(kannel_username,kannel_password).each do | operatorName , user, password | -%>
+<% if description.include? operatorName -%>
+### <%= description %>
+networkCode.<%= networkCode %>.kannel.username=<%= user %>
+networkCode.<%= networkCode %>.kannel.password=<%= password %>
+
+<% end -%>
+<% end -%>
+<% end -%>
+kannel.includeFrom=<%= includeFromShortcode %>
+kannel.from=<%= shortcode %>
+
+plugin.selector=*

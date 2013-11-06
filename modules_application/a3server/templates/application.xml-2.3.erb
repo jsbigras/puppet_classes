@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<application>
+    <package url="${file.dir}/lib/a3server.jar">
+        <lib url='./lib' />
+    </package>
+
+    <plugin type="nodes" name="logicAaa">
+        <node-beans>
+            <node-bean id="aaa-initializer" 
+                    class="com.myriadgroup.a3.nodes.AaaInitializer">
+                <configuration nmp:uri="${file.dir}/configuration.xml#aaa">
+                    <handler-classes nmp:uri="${file.dir}/class-definitions.xml#classes/handler-classes"/>
+                    <bouncer-codec-classes nmp:uri="${file.dir}/class-definitions.xml#classes/bouncer-codec-classes"/>
+                    <msisdn-validator-classes nmp:uri="${file.dir}/class-definitions.xml#classes/msisdn-validator-classes"/>
+                    <network-code-normalizer-classes nmp:uri="${file.dir}/class-definitions.xml#classes/network-code-normalizer-classes"/>
+                    <countries nmp:uri="${file.dir}/country-codes.xml#countries"/>
+                    <!-- TODO ThierryH Feb 14, 2013 remove the config below when IMPS server is fixed -->
+                    <create-imps-accounts-with-enabled-flag flag="T"/>
+                </configuration>
+            </node-bean>
+            <node-bean id="impsUserProvisioning" class="com.myriadgroup.a3.imps.ImpsUserProvisioningClientInitializer"/>
+        </node-beans>
+
+        <node-chains>
+            <node-chain id="a3bouncer">
+                <node type="transactionrecorder">
+                    <configuration nmp:uri="${file.dir}/configuration.xml#transactionrecorder/rps"/>
+                </node>
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaServerInfoFiller"/>
+                <node type="httpfilter">
+                    <configuration nmp:uri="${file.dir}/configuration.xml#http_rps"/>
+                </node>
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaInitializerPreparer"/>
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaRequestVerifier"/>
+                <node type="sso">
+                    <configuration nmp:uri="${file.dir}/configuration.xml#sso">
+                        <timestampValidityRangeSeconds><%= timestampValidityRangeSeconds %></timestampValidityRangeSeconds>
+                        <oauthPlainTextSignatureMethodSupported>false</oauthPlainTextSignatureMethodSupported>
+                        <handler-configuration class="com.myriadgroup.a3.AaaSsoHandler"/>
+                    </configuration>
+                </node>
+                <node type="rest" class="com.myriadgroup.aaa.protocol.rps.resource.AaaBouncerBinder" />
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaRequestValidator"/>
+                <node type="eventapp" class="com.myriadgroup.a3.handler.AaaBouncerHandlerRegistry"/>
+            </node-chain>
+
+            <node-chain id="a3server-common">
+                <node type="transactionrecorder">
+                    <configuration nmp:uri="${file.dir}/configuration.xml#transactionrecorder/rps"/>
+                </node>
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaServerInfoFiller"/>
+                <node type="httpfilter">
+                    <configuration nmp:uri="${file.dir}/configuration.xml#http_rps"/>
+                </node>
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaInitializerPreparer"/>
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaRequestVerifier"/>
+                <node type="sso">
+                    <configuration nmp:uri="${file.dir}/configuration.xml#sso">
+                        <timestampValidityRangeSeconds><%= timestampValidityRangeSeconds %></timestampValidityRangeSeconds>
+                        <handler-configuration class="com.myriadgroup.a3.AaaSsoHandler"/>
+                    </configuration>
+                </node>
+                <node type="rest" class="com.myriadgroup.aaa.protocol.rps.resource.AaaServerBinder" />
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaRequestValidator"/>
+                <node type="eventapp" class="com.myriadgroup.a3.handler.AaaServerHandlerRegistry">
+                    <configuration>
+                        <handler-configuration>
+                            <!-- In production: must be always false. True in development and QA to avoid having to 
+                                 send https requests to the AAA.  -->
+                            <allow-cleartext-sensitive-data>false</allow-cleartext-sensitive-data>
+                        </handler-configuration>
+                    </configuration>
+                </node>
+                
+            </node-chain>
+
+            <node-chain id="a3server-external">
+                <node type="includechain" ref-id="a3server-common" />
+            </node-chain>
+            
+            <node-chain id="a3server-walled-garden">
+                <node type="custom" class="com.nokia.nmp.nodes.standard.NmpWalledGardenNode"/>
+                <node type="includechain" ref-id="a3server-common" />
+            </node-chain>
+            
+            <node-chain id="a3server-admin">
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaServerInfoFiller"/>
+                <node type="custom" class="com.nokia.nmp.nodes.standard.NmpWalledGardenNode"/>
+                <node type="transactionrecorder">
+                    <configuration nmp:uri="${file.dir}/configuration.xml#transactionrecorder/rps"/>
+                </node>
+                <node type="httpfilter">
+                    <configuration nmp:uri="${file.dir}/configuration.xml#http_rps"/>
+                </node>
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaInitializerPreparer"/>
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaRequestVerifier"/>
+                <node type="rest" class="com.myriadgroup.aaa.protocol.rps.resource.AaaAdminBinder" />
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaRequestValidator"/>
+                <node type="eventapp" class="com.myriadgroup.a3.handler.AaaAdminHandlerRegistry"/>
+            </node-chain>
+            
+            <node-chain id="a3server-admin-anonymous"> <!-- For debugging or QA only. Not even RPS. -->
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaInitializerPreparer"/>
+                <node type="rest" class="com.myriadgroup.aaa.protocol.resource.AaaAdminAnonymousBinder" />
+                <node type="eventapp" class="com.myriadgroup.a3.handler.AaaAdminAnonymousHandlerRegistry"/>
+            </node-chain>
+            
+            <node-chain id="a3server-subms">
+                <node type="transactionrecorder">
+                    <configuration nmp:uri="${file.dir}/configuration.xml#transactionrecorder/subms"/>
+                </node>
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaInitializerPreparer"/>
+                <node type="rest" class="com.myriadgroup.aaa.protocol.subms.resource.SubmsBinder" />
+                <node type="custom" class="com.myriadgroup.a3.nodes.SubmsRequestValidator"/>
+                <node type="eventapp" class="com.myriadgroup.a3.handler.subms.SubmsHandlerRegistry"/>
+            </node-chain>
+            
+            <node-chain id="a3server-ignore">
+                <node type="custom" class="com.myriadgroup.a3.nodes.AaaRequestIgnorer"/>
+            </node-chain>
+            
+        </node-chains>
+    </plugin>
+
+    <plugin type="endpoint" name="http.bouncer">
+        <endpoint type="http" id="http.in.bouncer">
+            <configuration nmp:uri="${file.dir}/configuration.xml#aaa-bouncer">
+                <thread-pool min="10" max="50" />
+                <url-mapping endpoint-id="a3bouncer" url-pattern=".*" />
+                <log-context>
+                    <header name="x-unity-clientid" pattern=".*" />
+                    <header name="x-unity-deviceid" pattern=".*" />
+                    <header name="x-unity-imsi" pattern=".*" />
+                    <header name="x-unity-imei" pattern=".*" />
+                    <header name="x-unity-msisdn" pattern=".*" />
+                    <header name="x-unity-networkcode" pattern=".*" />
+                    <header name="x-forwarded-for" pattern=".*" />
+                </log-context>
+            </configuration>
+        </endpoint>
+    </plugin>
+    
+    <plugin type="endpoint" name="http.a3server.external">
+        <endpoint type="http" id="http.in.server.external">
+            <configuration nmp:uri="${file.dir}/configuration.xml#aaa-server-external">
+                <thread-pool min="10" max="50" />
+                <url-mapping endpoint-id="a3server-external" url-pattern=".*" />
+                <log-context>
+                    <header name="x-unity-clientid" pattern=".*" />
+                    <header name="x-unity-deviceid" pattern=".*" />
+                    <header name="x-unity-imsi" pattern=".*" />
+                    <header name="x-unity-imei" pattern=".*" />
+                    <header name="x-unity-msisdn" pattern=".*" />
+                    <header name="x-unity-networkcode" pattern=".*" />
+                    <header name="x-forwarded-for" pattern=".*" />
+                </log-context>
+            </configuration>
+        </endpoint>
+    </plugin>
+    
+    <plugin type="endpoint" name="http.server.walledgarden">
+        <endpoint type="http" id="http.in.server.walledgarden">
+            <configuration nmp:uri="${file.dir}/configuration.xml#aaa-server-walled-garden">
+                <thread-pool min="10" max="50" />
+                <url-mapping endpoint-id="a3server-walled-garden" url-pattern=".*" />
+                <log-context>
+                    <header name="x-unity-clientid" pattern=".*" />
+                    <header name="x-unity-deviceid" pattern=".*" />
+                    <header name="x-unity-imsi" pattern=".*" />
+                    <header name="x-unity-imei" pattern=".*" />
+                    <header name="x-unity-msisdn" pattern=".*" />
+                    <header name="x-unity-networkcode" pattern=".*" />
+                    <header name="x-forwarded-for" pattern=".*" />
+                </log-context>
+            </configuration>
+        </endpoint>
+    </plugin>
+
+    <plugin type="endpoint" name="http.admin">
+        <endpoint type="http" id="http.in.admin">
+            <configuration nmp:uri="${file.dir}/configuration.xml#aaa-admin">
+                <thread-pool min="10" max="50" />
+                <url-mapping endpoint-id="a3server-admin-anonymous" url-pattern="/admin/anonymous/.*" />
+                <url-mapping endpoint-id="a3server-admin" url-pattern=".*" />
+                <log-context>
+                    <header name="x-unity-clientid" pattern=".*" />
+                    <header name="x-unity-deviceid" pattern=".*" />
+                    <header name="x-unity-imsi" pattern=".*" />
+                    <header name="x-unity-imei" pattern=".*" />
+                    <header name="x-unity-msisdn" pattern=".*" />
+                    <header name="x-unity-networkcode" pattern=".*" />
+                    <header name="x-forwarded-for" pattern=".*" />
+                </log-context>
+            </configuration>
+        </endpoint>
+    </plugin>
+
+    <plugin type="endpoint" name="http.subms">
+        <endpoint type="http" id="http.in.subms">
+            <configuration nmp:uri="${file.dir}/configuration.xml#aaa-subms">
+                <thread-pool min="2" max="10" />
+                <url-mapping endpoint-id="a3server-subms" url-pattern="/notify/subscription/cancel.*" />
+                <url-mapping endpoint-id="a3server-ignore" url-pattern=".*" />
+                <log-context>
+                   <!-- empty: subms doesn't send info in headers -->
+                </log-context>
+            </configuration>
+        </endpoint>
+    </plugin>
+
+</application>

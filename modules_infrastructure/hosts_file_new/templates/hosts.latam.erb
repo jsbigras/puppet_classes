@@ -1,0 +1,73 @@
+# Do not remove the following line, or various programs
+# that require network functionality will fail.
+
+127.0.0.1	localhost.localdomain				localhost
+::1		localhost6.localdomain6				localhost6
+
+# SDC in-Common servers
+10.33.68.177	com-v-db-01.suw.hosting.ops			com-v-db-01
+10.33.68.178	com-v-db-02.suw.hosting.ops			com-v-db-02
+10.33.68.179	com-v-qv-01.suw.hosting.ops			com-v-qv-01
+10.33.68.182	com-v-ccs-01.suw.hosting.ops			com-v-ccs-01
+10.33.68.183	com-v-ccs-02.suw.hosting.ops			com-v-ccs-02
+10.33.68.184	com-p-cdw-01.suw.hosting.ops			com-p-cdw-01
+10.33.68.185	com-p-cdw-02.suw.hosting.ops			com-p-cdw-02
+10.33.68.186	com-v-espws-01.suw.hosting.ops			com-v-espws-01
+10.33.68.187	com-v-espws-02.suw.hosting.ops			com-v-espws-02
+10.33.68.188	com-v-kan-01.suw.hosting.ops			com-v-kan-01
+10.33.68.189	com-v-kan-02.suw.hosting.ops			com-v-kan-02
+10.33.68.176	com-v-kan-09.suw.hosting.ops			com-v-kan-09
+10.33.68.190	com-v-smtp-01.suw.hosting.ops			com-v-smtp-01
+10.33.68.191	com-v-smtp-02.suw.hosting.ops			com-v-smtp-02
+10.33.68.192	com-v-xcoder-01.suw.hosting.ops			com-v-xcoder-01
+10.33.68.193	com-v-xcoder-02.suw.hosting.ops			com-v-xcoder-02
+
+10.33.64.235	com-v-int
+10.33.68.21	com-v-db-floating-ip
+
+# SDC LATAM servers
+10.33.68.132	latam-v-aaa-01.suw.hosting.ops			latam-v-aaa-01
+10.33.68.133	latam-v-aaa-02.suw.hosting.ops			latam-v-aaa-02
+10.33.68.134	latam-v-cache-01.suw.hosting.ops		latam-v-cache-01
+10.33.68.135	latam-v-cache-02.suw.hosting.ops		latam-v-cache-02
+10.33.68.136	latam-v-db-01.suw.hosting.ops			latam-v-db-01
+10.33.68.137	latam-v-db-02.suw.hosting.ops			latam-v-db-02
+10.33.68.138	latam-v-em2sms-01.suw.hosting.ops		latam-v-em2sms-01
+10.33.68.139	latam-v-em2sms-02.suw.hosting.ops		latam-v-em2sms-02
+10.33.68.140	latam-v-imps-be-01.suw.hosting.ops		latam-v-imps-be-01	tisa-app1					tisa-app-vip	cir-server	tisa-cir-server
+10.33.68.141	latam-v-imps-be-02.suw.hosting.ops		latam-v-imps-be-02	tisa-app2
+10.33.68.142	latam-v-imps-fe-01.suw.hosting.ops		latam-v-imps-fe-01	tisa-fe1
+10.33.68.143	latam-v-imps-fe-02.suw.hosting.ops		latam-v-imps-fe-02	tisa-fe2
+10.33.68.144	latam-v-mu-01.suw.hosting.ops			latam-v-mu-01		latam_v_mu_01
+10.33.68.145	latam-v-mu-02.suw.hosting.ops			latam-v-mu-02		latam_v_mu_02
+10.33.68.146	latam-v-ns-01.suw.hosting.ops			latam-v-ns-01
+10.33.68.147	latam-v-ns-02.suw.hosting.ops			latam-v-ns-02
+10.33.68.148	latam-v-ps-01.suw.hosting.ops			latam-v-ps-01
+10.33.68.149	latam-v-ps-02.suw.hosting.ops			latam-v-ps-02
+10.33.68.150	latam-v-romeo-01.suw.hosting.ops		latam-v-romeo-01
+10.33.68.151	latam-v-romeo-02.suw.hosting.ops		latam-v-romeo-02
+10.33.68.152	latam-v-subms-01.suw.hosting.ops		latam-v-subms-01	latam_v_subms_01
+10.33.68.153	latam-v-subms-02.suw.hosting.ops		latam-v-subms-02	latam_v_subms_02
+10.33.68.154	latam-v-tm-01.suw.hosting.ops			latam-v-tm-01
+10.33.68.155	latam-v-tm-02.suw.hosting.ops			latam-v-tm-02
+10.33.68.156	latam-v-ug-01.suw.hosting.ops			latam-v-ug-01
+10.33.68.157	latam-v-ug-02.suw.hosting.ops			latam-v-ug-02
+10.33.68.166	latam-vip-imps-tisa.suw.hosting.ops		latam-vip-imps-tisa
+
+10.33.64.171	latam-v-int					tisa-imps-c-01.suw.hosting.ops
+10.33.68.23	latam-v-db-floating-ip
+
+# Infrastructure servers
+172.16.36.101	suwpuppet01.mt2.suw.hostings.ops
+<%= auth_server1_ip -%>	<%= auth_server1_name %>
+<%= auth_server2_ip -%>	<%= auth_server2_name %>
+
+172.16.36.30	suwmt2bkupdd01.mt2.suw.hosting.ops		suwmt2bkupdd01		suwmt2bkupdd01-vip01.mt2.suw.hosting.ops	suwmt2bkupdd01-vip01
+172.16.36.31	suwmt2bkupdd01-vip02.mt2.suw.hosting.ops	suwmt2bkupdd01-vip02
+172.16.36.34	suwmt2bkup01.mt2.suw.hosting.ops		suwmt2bckup01		suwmt2bkup01mgmt.mt2.suw.hosting.ops		suwmt2bckup01mgmt
+172.16.36.35	suwmt2bkup01-vip01.mt2.suw.hosting.ops		suwmt2bkup01-vip01
+172.16.36.36	suwmt2bkup01-vip02.mt2.suw.hosting.ops		suwmt2bkup01-vip02
+172.16.36.37	suwmt2bkup01-vip03.mt2.suw.hosting.ops		suwmt2bkup01-vip03
+172.16.36.38	suwmt2bkup01-vip04.mt2.suw.hosting.ops		suwmt2bkup01-vip04
+
+172.16.36.58	suwmt2oam01mgmt.mt2.suw.hosting.ops		mailhost		syslog

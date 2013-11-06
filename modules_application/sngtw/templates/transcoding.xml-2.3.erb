@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<CONFIGURATION service="transcoding">
+    <transcoding>
+        <transcoders>
+            <transcoder name="sti" url="http://<%= int_vip_common %>:<%= v_port_xcoder %>" class="com.nokia.nmp.transcoding.sti.StiTranscoder">
+                <format type="image" transfer-type="incoming" value="image/jpeg,image/png,image/bmp,image/gif,image/tiff"/>
+                <format type="image" transfer-type="outgoing" value="image/jpeg,image/png"/>
+            </transcoder>
+        </transcoders>
+        <profiles>
+
+            <!-- Profiles used for SN picture -->
+            <profile name="t">
+                <property name="default-output-content-type" value="image/png"/>
+                <property name="size-limit" value="10000"/>
+                <property name="width" value="50"/>
+                <property name="height" value="50"/>
+                <property name="resize-directive" value="AspectRatio"/>
+                <property name="upsize-allowed" value="false"/>
+                <property name="color-scheme" value="True"/>
+                <property name="color-depth" value="32"/>
+            </profile>
+            <profile name="s">
+                <property name="default-output-content-type" value="image/png"/>
+                <property name="size-limit" value="100000"/>
+                <property name="width" value="180"/>
+                <property name="height" value="180"/>
+                <property name="resize-directive" value="AspectRatio"/>
+                <property name="upsize-allowed" value="false"/>
+                <property name="color-scheme" value="True"/>
+                <property name="color-depth" value="32"/>
+            </profile>
+            <profile name="m">
+                <property name="default-output-content-type" value="image/png"/>
+                <property name="size-limit" value="300000"/>
+                <property name="width" value="320"/>
+                <property name="height" value="320"/>
+                <property name="resize-directive" value="AspectRatio"/>
+                <property name="upsize-allowed" value="false"/>
+                <property name="color-scheme" value="True"/>
+                <property name="color-depth" value="32"/>
+            </profile>
+
+            <!-- Profiles used for email attachments -->
+            <profile name="THUMBNAIL">
+                <property name="default-output-content-type" value="image/png"/>
+                <property name="size-limit" value="10000"/>
+                <property name="width" value="50"/>
+                <property name="height" value="50"/>
+                <property name="resize-directive" value="AspectRatio"/>
+                <property name="upsize-allowed" value="false"/>
+                <property name="color-scheme" value="True"/>
+                <property name="color-depth" value="32"/>
+            </profile>
+            <profile name="XSMALL">
+                <property name="default-output-content-type" value="image/png"/>
+                <property name="size-limit" value="50000"/>
+                <property name="width" value="125"/>
+                <property name="height" value="125"/>
+                <property name="resize-directive" value="AspectRatio"/>
+                <property name="upsize-allowed" value="false"/>
+                <property name="color-scheme" value="True"/>
+                <property name="color-depth" value="32"/>
+            </profile>
+            <profile name="SMALL">
+                <property name="default-output-content-type" value="image/png"/>
+                <property name="size-limit" value="100000"/>
+                <property name="width" value="180"/>
+                <property name="height" value="180"/>
+                <property name="resize-directive" value="AspectRatio"/>
+                <property name="upsize-allowed" value="false"/>
+                <property name="color-scheme" value="True"/>
+                <property name="color-depth" value="32"/>
+            </profile>
+            <profile name="MEDIUM">
+                <property name="default-output-content-type" value="image/png"/>
+                <property name="size-limit" value="300000"/>
+                <property name="width" value="320"/>
+                <property name="height" value="320"/>
+                <property name="resize-directive" value="AspectRatio"/>
+                <property name="upsize-allowed" value="false"/>
+                <property name="color-scheme" value="True"/>
+                <property name="color-depth" value="32"/>
+            </profile>
+            <profile name="LARGE">
+                <property name="default-output-content-type" value="image/png"/>
+                <property name="size-limit" value="1200000"/>
+                <property name="width" value="640"/>
+                <property name="height" value="640"/>
+                <property name="resize-directive" value="AspectRatio"/>
+                <property name="upsize-allowed" value="false"/>
+                <property name="color-scheme" value="True"/>
+                <property name="color-depth" value="32"/>
+            </profile>
+            <profile name="FULLSCREEN">
+                <property name="default-output-content-type" value="image/png"/>
+                <property name="size-limit" value="2000000"/>
+                <property name="width" value="1024"/>
+                <property name="height" value="1024"/>
+                <property name="resize-directive" value="AspectRatio"/>
+                <property name="upsize-allowed" value="false"/>
+                <property name="color-scheme" value="True"/>
+                <property name="color-depth" value="32"/>
+            </profile>
+        </profiles>
+    </transcoding>
+</CONFIGURATION>

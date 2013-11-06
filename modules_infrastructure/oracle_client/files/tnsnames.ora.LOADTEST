@@ -1,0 +1,139 @@
+IMDB31 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.233)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = IMDB31)
+    )
+  )
+
+IMDB32 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.234)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = IMDB32)
+    )
+  )
+
+DBQUEBEC =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.205)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = DBQUEBEC)
+    )
+  )
+
+MAILDB1 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.223)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = MAILDB1)
+    )
+  )
+
+MAILDB2 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.224)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = MAILDB2)
+    )
+  )
+
+MAILDB3 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.213)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = MAILDB3)
+    )
+  )
+
+DBLT1 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.202)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID=DBLT1)
+    )
+  )
+
+IMLT1 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.215)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID=IMLT1)
+    )
+  )
+
+TOOLSLT1 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.201)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID=TOOLSLT1)
+    )
+  )
+
+G4CLUST1 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.243)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = G4CLUST1)
+    )
+  )
+
+G4CLUST2 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.244)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = G4CLUST2)
+    )
+  )
+
+BIGDB1 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.245)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = BIGDB1)
+    )
+  )
+
+BIGDB2 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.246)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = BIGDB2)
+    )
+  )
+
+BIGDB3 =
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.4.68.247)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = BIGDB3)
+    )
+  )

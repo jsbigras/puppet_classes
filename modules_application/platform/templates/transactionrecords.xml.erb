@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<CONFIGURATION service="transactionrecords">
+	<!--  The base directory where records are written. -->
+	<base-directory>/var/nokia/transactionrecords</base-directory>
+	<!--  The records event queue size in memory -->
+	<queue-size>10000</queue-size>
+	<!--  The maximum file size in MBytes-->
+	<max-file-size>100</max-file-size>
+	<!--  The maximum file time - rollover happens if a file is older than this time -->
+	<max-file-time unit="HOURS">1</max-file-time>
+	<!--  The maximum idle time - alarm is raised if a file is older than this time -->
+	<max-file-idle unit="HOURS"><%= maxfileidle %></max-file-idle>
+	<!--  The maximum stale time - alarm is raised and file is deleted after this time -->
+	<max-file-stale unit="HOURS"><%= maxfilestale %></max-file-stale>
+</CONFIGURATION>

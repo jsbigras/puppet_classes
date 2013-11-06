@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<configuration>
+    <pushserver>
+    
+        <listening>
+            <listening-interface><%= ipaddress %></listening-interface>
+            <listening-port><%= l_port_ps %></listening-port>
+        </listening>
+
+        <tool>
+            <listening-interface><%= ipaddress %></listening-interface>
+            <listening-port><%= l_port_ps_tool %></listening-port>
+        </tool>
+
+        <asynchronousNotification>
+            <yahoo>
+                <listening-interface><%= notifurl %></listening-interface>
+                <listening-port><%= notifport %></listening-port>
+                <ssl>false</ssl>
+            </yahoo>
+            <ews>
+                <listening-interface><%= notifurl %></listening-interface>
+                <listening-port><%= notifport %></listening-port>
+                <ssl>false</ssl>
+            </ews>
+        </asynchronousNotification>
+
+        <asynchronousListening>
+            <yahoo>
+                <listening-interface><%= ipaddress %></listening-interface>
+                <listening-port><%= l_port_ps_yahoo %></listening-port>
+                <ssl>false</ssl>
+            </yahoo>
+            <ews>
+                <listening-interface><%= ipaddress %></listening-interface>
+                <listening-port><%= l_port_ps_ews %></listening-port>
+                <ssl>false</ssl>
+            </ews>
+        </asynchronousListening>
+
+        <connectionManagement>PushServerTcpConfig</connectionManagement>
+
+        <notificationServer>
+            <tenantId>unity</tenantId>
+        </notificationServer>
+
+        <userActivityTimeoutThresholdInDays>7</userActivityTimeoutThresholdInDays>
+
+        <maxSubscriptions>200000</maxSubscriptions>
+
+        <farmMemberName>pushServer</farmMemberName>
+
+        <credentials-ttl-minutes>129600</credentials-ttl-minutes>
+
+        <maxPollingSpreadBufferInSeconds>300</maxPollingSpreadBufferInSeconds>
+
+        <StoreCheckerTaskWakeUpFrequencyInMinute>5</StoreCheckerTaskWakeUpFrequencyInMinute>
+
+        <StoreCheckingFrequencyInMinute>720</StoreCheckingFrequencyInMinute>
+
+        <StoreCheckerQueueSize>5000</StoreCheckerQueueSize>
+
+        <polling>
+            <pollIntervalSecond>300</pollIntervalSecond>
+        </polling>
+
+    </pushserver>
+
+    <esp>
+        <espEnabled>true</espEnabled>
+        <espUrl>http://<%= int_vip_common %>:<%= v_port_espws %></espUrl>
+        <esp-cache-ttl-minutes>720</esp-cache-ttl-minutes>
+        <!--  a configuration reload will clear the cache if the uid below is updated. This is used to
+              clear the cache only if desired. Any string less than 100 chars is valid -->
+        <esp-cache-clear-uid>1</esp-cache-clear-uid>
+    </esp>
+	
+	<credsStore>
+		<credentials-store-cache-id>credentials</credentials-store-cache-id>
+	</credsStore>
+
+    <pfs>
+        <pfsUrl>http://<%= int_vip_common %>:<%= v_port_espws %></pfsUrl>
+    </pfs>
+
+</configuration>
