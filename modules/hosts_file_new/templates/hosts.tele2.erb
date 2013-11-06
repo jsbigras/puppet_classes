@@ -1,0 +1,28 @@
+# Do not remove the following line, or various programs
+# that require network functionality will fail.
+
+127.0.0.1	localhost.localdomain				localhost
+::1		localhost6.localdomain6				localhost6
+
+10.33.68.110	tele2-cache01.suw.hosting.ops			tele2-cache01
+10.33.68.111	tele2-cache02.suw.hosting.ops			tele2-cache02
+10.33.68.112	tele2-ns01.suw.hosting.ops			tele2-ns01
+10.33.68.113	tele2-ns02.suw.hosting.ops			tele2-ns02
+10.33.68.114	tele2-ima01.suw.hosting.ops			tele2-ima01
+10.33.68.115	tele2-ima02.suw.hosting.ops			tele2-ima02
+10.33.68.130	suwcdw01.suw.hosting.ops			suwcdw01
+
+# Infrastructure servers
+172.16.36.101	suwpuppet01.mt2.suw.hostings.ops
+<%= auth_server1_ip -%>	<%= auth_server1_name %>
+<%= auth_server2_ip -%>	<%= auth_server2_name %>
+
+172.16.36.30	suwmt2bkupdd01.mt2.suw.hosting.ops		suwmt2bkupdd01		suwmt2bkupdd01-vip01.mt2.suw.hosting.ops	suwmt2bkupdd01-vip01
+172.16.36.31	suwmt2bkupdd01-vip02.mt2.suw.hosting.ops	suwmt2bkupdd01-vip02
+172.16.36.34	suwmt2bkup01.mt2.suw.hosting.ops		suwmt2bckup01		suwmt2bkup01mgmt.mt2.suw.hosting.ops		suwmt2bckup01mgmt
+172.16.36.35	suwmt2bkup01-vip01.mt2.suw.hosting.ops		suwmt2bkup01-vip01
+172.16.36.36	suwmt2bkup01-vip02.mt2.suw.hosting.ops		suwmt2bkup01-vip02
+172.16.36.37	suwmt2bkup01-vip03.mt2.suw.hosting.ops		suwmt2bkup01-vip03
+172.16.36.38	suwmt2bkup01-vip04.mt2.suw.hosting.ops		suwmt2bkup01-vip04
+
+172.16.36.58	suwmt2oam01mgmt.mt2.suw.hosting.ops		mailhost		syslog

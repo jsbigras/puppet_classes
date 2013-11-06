@@ -1,0 +1,152 @@
+# Class: mcollective
+# This module install the mcollective component on the server.
+#
+# Parameters:
+#
+# $mc_server: mcollective server
+# $mc_server = 'suwpuppet01.mt2.suw.hostings.op'
+#
+# $mc_user: mcollective username
+# $mc_user = 'mcollective'
+#
+# $mc_password: mcollective password
+# $mc_password = 'marionette'
+#
+# Sample usage:
+#
+# class { 'mcollective':
+#       mc_server	=> 'suwpuppet01.mt2.suw.hostings.op',
+#       mc_user		=> 'mcollective',
+#       mc_password	=> 'marionette',
+# }
+
+class mcollective_new ( $mc_server	= 'suwpuppet01.mt2.suw.hostings.op',
+			$mc_user	= 'mcollective',
+			$mc_password	= 'marionette' ) {
+	
+	package { 'mcollective':
+		ensure		=> present,
+		provider	=> yum,
+	}
+	
+	package { 'ruby-irb':
+		ensure		=> present,
+		provider	=> yum,
+	}
+	
+	package { 'ruby-docs':
+		ensure		=> present,
+		provider	=> yum,
+	}
+
+	# "File" Type is a code compresiion technique which defined default value to be used within this scope.
+	File {
+		owner		=> root,
+		group		=> root,
+		mode		=> 0644,
+	}
+
+	file { 'server.cfg':
+		ensure		=> present,
+		mode            => 640,
+		path		=> '/etc/mcollective/server.cfg',
+		require		=> Package['mcollective'],
+		notify		=> Service['mcollective'],
+		content		=> template('mcollective_new/server.cfg.erb'),
+	}
+
+	file { 'facter_facts.rb':
+		ensure		=> present,
+		path		=> '/usr/libexec/mcollective/mcollective/facts/facter_facts.rb',
+		source		=> 'puppet:///modules/mcollective_new/facter_facts.rb',
+		require		=> File['server.cfg'],
+	}
+		
+	file { 'service.rb':
+		ensure		=> present,
+		path		=> '/usr/libexec/mcollective/mcollective/agent/service.rb',
+		source		=> 'puppet:///modules/mcollective_new/service.rb',
+		notify		=> Service['mcollective'],
+		require		=> File['server.cfg'],
+	}
+
+	file { 'service.ddl':
+		ensure		=> present,
+		path		=> '/usr/libexec/mcollective/mcollective/agent/service.ddl',
+		source		=> 'puppet:///modules/mcollective_new/service.ddl',
+		notify		=> Service['mcollective'],
+		require		=> File['server.cfg'],
+	}
+
+	file { 'shellcmd.rb':
+		ensure		=> present,
+		path		=> '/usr/libexec/mcollective/mcollective/agent/shellcmd.rb',
+		source		=> 'puppet:///modules/mcollective_new/shellcmd.rb',
+		notify		=> Service['mcollective'],
+		require		=> File['server.cfg'],
+	}
+
+	file { 'filemgr.ddl':
+		ensure		=> present,
+		path		=> '/usr/libexec/mcollective/mcollective/agent/filemgr.ddl',
+		source		=> 'puppet:///modules/mcollective_new/filemgr.ddl',
+		notify		=> Service['mcollective'],
+		require		=> File['server.cfg'],
+	}
+
+	file { 'filemgr.rb':
+		ensure		=> present,
+		path		=> '/usr/libexec/mcollective/mcollective/agent/filemgr.rb',
+		source		=> 'puppet:///modules/mcollective_new/filemgr.rb',
+		notify		=> Service['mcollective'],
+		require		=> File['server.cfg'],
+	}
+
+	file { 'puppetral.rb':
+		ensure		=> present,
+		path		=> '/usr/libexec/mcollective/mcollective/agent/puppetral.rb',
+		source		=> 'puppet:///modules/mcollective_new/puppetral.rb',
+		notify		=> Service['mcollective'],
+		require		=> File['server.cfg'],
+	}
+
+	file { 'package.ddl':
+		ensure		=> present,
+		path		=> '/usr/libexec/mcollective/mcollective/agent/package.ddl',
+		source		=> 'puppet:///modules/mcollective_new/package.ddl',
+		notify		=> Service['mcollective'],
+		require		=> File['server.cfg'],
+	}
+
+	file { 'package.rb':
+		ensure		=> present,
+		path		=> '/usr/libexec/mcollective/mcollective/agent/package.rb',
+		source		=> 'puppet:///modules/mcollective_new/package.rb',
+		notify		=> Service['mcollective'],
+		require		=> File['server.cfg'],
+	}
+
+	file { 'puppetd.ddl':
+		ensure		=> present,
+		path		=> '/usr/libexec/mcollective/mcollective/agent/puppetd.ddl',
+		source		=> 'puppet:///modules/mcollective_new/puppetd.ddl',
+		notify		=> Service['mcollective'],
+		require		=> File['server.cfg'],
+	}
+
+	file { 'puppetd.rb':
+		ensure		=> present,
+		path		=> '/usr/libexec/mcollective/mcollective/agent/puppetd.rb',
+		source		=> 'puppet:///modules/mcollective_new/puppetd.rb',
+		notify		=> Service['mcollective'],
+		require		=> File['server.cfg'],
+	}
+
+	service { 'mcollective':
+		enable		=> true,
+		ensure		=> running,
+		subscribe	=> File['/etc/mcollective/server.cfg'],
+		require		=> Package['mcollective'],
+	}
+
+} # End of class mcollective_new

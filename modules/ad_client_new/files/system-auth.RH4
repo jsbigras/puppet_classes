@@ -1,0 +1,22 @@
+#%PAM-1.0
+# This file is auto-generated.
+# User changes will be destroyed the next time authconfig is run.
+auth        required      /lib/security/$ISA/pam_env.so
+auth        required      /lib/security/$ISA/pam_tally.so onerr=fail no_magic_root
+auth        sufficient    /lib/security/$ISA/pam_unix.so likeauth nullok
+auth        sufficient    /lib/security/$ISA/pam_ldap.so use_first_pass
+auth        required      /lib/security/$ISA/pam_deny.so
+
+account     required      /lib/security/$ISA/pam_unix.so broken_shadow
+account     sufficient    /lib/security/$ISA/pam_localuser.so
+account     required      /lib/security/$ISA/pam_tally.so per_user deny=5 no_magic_root reset
+account     [default=bad success=ok user_unknown=ignore service_err=ignore system_err=ignore] /lib/security/$ISA/pam_ldap.so
+
+password    required      /lib/security/$ISA/pam_passwdqc.so min=disabled,disabled,12,8,8 random=42
+password    sufficient    /lib/security/$ISA/pam_unix.so nullok use_authtok md5 shadow remember=12
+password    sufficient    /lib/security/$ISA/pam_ldap.so use_authtok
+password    required      /lib/security/$ISA/pam_deny.so
+
+session     required      /lib/security/$ISA/pam_limits.so
+session     required      /lib/security/$ISA/pam_unix.so
+session     optional      /lib/security/$ISA/pam_ldap.so

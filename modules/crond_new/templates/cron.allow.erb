@@ -1,0 +1,10 @@
+root
+<% if classes.include? 'mysql::server' -%>
+mysql
+<% end -%>
+oracle
+ozimps
+databridge
+<% if my_role == 'nagios' -%>
+<%= nagios_cron %>
+<% end -%>
