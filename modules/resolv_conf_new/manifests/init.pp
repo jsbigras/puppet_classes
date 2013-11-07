@@ -12,7 +12,7 @@
 #       dns_servers => [ '192.168.130.101', '192.168.130.102' ],
 # }
 
-class resolv_conf_new ( $dns_servers  = [ '192.168.130.101', '192.168.130.102' ] ) {
+class resolv_conf_new ( $dns_servers  = [ '10.223.204.70', '10.223.204.71' ] ) {
 
 	file { '/etc/resolv.conf':
 		owner		=> root,

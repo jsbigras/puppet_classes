@@ -42,11 +42,6 @@ class services_stopped_new {
 		enable		=> false,
 	}
 	
-	service { 'portmap':
-		ensure		=> stopped,
-		enable		=> false,
-	}
-
 	service { 'rhnsd':
 		ensure		=> stopped,
 		enable		=> false,
