@@ -6,10 +6,4 @@ class git {
                 ensure          => present,
                 provider        => yum,
         }
-
-	service { 'git':
-		enable =>	true,
-		require =>	Package['git'],
-	}
-
 }

@@ -6,10 +6,4 @@ class htop {
                 ensure          => present,
                 provider        => yum,
         }
-
-	service { 'htop':
-		enable =>	true,
-		require =>	Package['htop'],
-	}
-
 }

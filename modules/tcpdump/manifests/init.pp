@@ -6,10 +6,4 @@ class tcpdump {
                 ensure          => present,
                 provider        => yum,
         }
-
-	service { 'tcpdump':
-		enable =>	true,
-		require =>	Package['tcpdump'],
-	}
-
 }

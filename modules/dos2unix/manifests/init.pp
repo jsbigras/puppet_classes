@@ -7,9 +7,4 @@ class dos2unix {
                 provider        => yum,
         }
 
-	service { 'dos2unix':
-		enable =>	true,
-		require =>	Package['dos2unix'],
-	}
-
 }

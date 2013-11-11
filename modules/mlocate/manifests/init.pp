@@ -6,10 +6,4 @@ class mlocate {
                 ensure          => present,
                 provider        => yum,
         }
-
-	service { 'mlocate':
-		enable =>	true,
-		require =>	Package['mlocate'],
-	}
-
 }

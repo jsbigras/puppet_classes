@@ -6,10 +6,4 @@ class screen {
                 ensure          => present,
                 provider        => yum,
         }
-
-	service { 'screen':
-		enable =>	true,
-		require =>	Package['screen'],
-	}
-
 }

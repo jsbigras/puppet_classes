@@ -6,10 +6,4 @@ class perl_crypt {
                 ensure		=> present,
 		provider	=> yum,
         }
-
-        package { 'perl-Crypt-CBC':
-                ensure		=> present,
-		provider	=> yum,
-        }
-
 }

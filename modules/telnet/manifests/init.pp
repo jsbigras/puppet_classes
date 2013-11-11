@@ -6,10 +6,4 @@ class telnet {
                 ensure          => present,
                 provider        => yum,
         }
-
-	service { 'telnet':
-		enable =>	true,
-		require =>	Package['telnet'],
-	}
-
 }
