@@ -7,7 +7,7 @@ class vim {
                 provider        => yum,
         }
 
-        package { 'vim-minimum':
+        package { 'vim-minimal':
                 ensure          => present,
                 provider        => yum,
         }
