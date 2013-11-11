@@ -20,7 +20,6 @@ class users_new::config {
 		groups		=> undef,
 		comment		=> "${hostname} ozimps",
 		managehome	=> true,
-		require		=> Class['users_new::install'],
 	}
 
 	if defined(Class['mysql::server']) {
