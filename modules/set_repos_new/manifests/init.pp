@@ -20,7 +20,7 @@
 #       my_role => 'tbd',
 # }
 
-class set_repos_new ( 	$yum_server1  = 'tm-v-repos.synchronica.com' ) {
+class set_repos_new ( 	$yum_server1  = 'tm-repos.synchronica.com' ) {
 
 	file {  ['/etc/yum.repos.d/CentOS-Base.repo', '/etc/yum.repos.d/CentOS-Debuginfo.repo', '/etc/yum.repos.d/kickstart.repo',
 		'/etc/yum.repos.d/rhel4.8.repo', '/etc/yum.repos.d/CentOS-Media.repo', '/etc/yum.repos.d/CentOS-Vault.repo']:
