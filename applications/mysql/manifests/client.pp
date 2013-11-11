@@ -3,7 +3,7 @@
 class mysql::client {
 
 	package { "MySQL-client":
-		present		=> "${version}",
+		ensure		=> /${version}/,
 		provider	=> yum,
 	}	
 
