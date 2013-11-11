@@ -27,12 +27,15 @@ class set_repos_new ( 	$yum_server1  = 'tm-v-repos.synchronica.com' ) {
 		ensure		=> absent,
 	}
 
-	yumrepo { 'Base':
-		baseurl		=> "http://${yum_server1}/${operatingsystem}/${lsbdistrelease}/os/${architecture}",
-		descr		=> 'Base Packages',
-		enabled		=> 1,
-		gpgcheck	=> 0,
-	}
+        yumrepo { 'Base':
+                baseurl         => $lsbdistrelease ? {
+                                        /^5/ => "http://${yum_server1}/${operatingsystem}/5.9/os/${architecture}",
+                                        /^6/ => "http://${yum_server1}/${operatingsystem}/6.3/os/${architecture}",
+                },
+                descr           => 'Base Packages',
+                enabled         => 1,
+                gpgcheck        => 0,
+        }
 
 	yumrepo { 'Custom':
 		baseurl		=> "http://${yum_server1}/${operatingsystem}/${lsbdistrelease}/custom/${architecture}",
