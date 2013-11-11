@@ -28,21 +28,21 @@ class set_repos_new ( 	$yum_server1  = 'tm-v-repos.synchronica.com' ) {
 	}
 
         yumrepo { 'Base':
-                baseurl         => "http://${yum_server1}/${operatingsystem}/5.9/os/${architecture}",
+                baseurl         => "http://${yum_server1}/centos/5.9/os/${architecture}",
                 descr           => 'Base Packages',
                 enabled         => 1,
                 gpgcheck        => 0,
         }
 
 	yumrepo { 'Custom':
-		baseurl		=> "http://${yum_server1}/${operatingsystem}/${lsbdistrelease}/custom/${architecture}",
+		baseurl		=> "http://${yum_server1}/centos/5.9/custom/${architecture}",
 		descr		=> 'Custom Packages',
 		enabled		=> 1,
 		gpgcheck	=> 0,
 	}
 
 	yumrepo { 'Errata':
-		baseurl		=> "http://${yum_server1}/${operatingsystem}/${lsbdistrelease}/errata/${architecture}",
+		baseurl		=> "http://${yum_server1}/centos/5.9/errata/${architecture}",
 		descr		=> 'Errata Packages',
 		enabled		=> 1,
 		gpgcheck	=> 0,
