@@ -63,7 +63,7 @@
 		serverIdToCheck=`echo ${hostName#${hostName%?}}`
 
 		case ${serverIdToCheck} in
-		1|2)
+		1|2|3)
 			serverId=${serverIdToCheck}
 		;;
 		*)
