@@ -35,7 +35,7 @@ class set_repos_new ( 	$yum_server1  = 'tm-repos.synchronica.com' ) {
         }
 
 	yumrepo { 'Custom':
-		baseurl		=> "http://${yum_server1}/centos/5.9/custom/${architecture}",
+		baseurl		=> "http://${yum_server1}/centos/5.9/custom/${my_role}",
 		descr		=> 'Custom Packages',
 		enabled		=> 1,
 		gpgcheck	=> 0,
