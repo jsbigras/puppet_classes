@@ -13,7 +13,7 @@
 #       stage                   => post,
 # }
 
-class mysql::server (   $version                = '5.5.28-1.rhel5' ) {
+class mysql::server {
 	require set_repos_new
 	require bc
 	require users_new

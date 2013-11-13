@@ -7,4 +7,4 @@ class mysql::client {
 		provider	=> yum,
 	}	
 
-} # End of class mysql::client:w
+} # End of class mysql::client
