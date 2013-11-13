@@ -79,8 +79,8 @@
 
 		echo -e "# Configure port and socket for client" >> ${myCnf}
 		echo -e "[client]" >> ${myCnf}
-		echo -e "port = 3306" >> ${myCnf}
-		echo -e "socket = /tmp/mysql.sock" >> ${myCnf}
+		echo -e "## port = 3306" >> ${myCnf}
+		echo -e "## socket = /tmp/mysql.sock" >> ${myCnf}
 		echo -e "" >> ${myCnf}
 		echo -e "# Configure large-pages" >> ${myCnf}
 		echo -e "[mysqld]" >> ${myCnf}
@@ -91,8 +91,8 @@
 		echo -e "" >> ${myCnf}
 		echo -e "# Configure server port and socket" >> ${myCnf}
 		echo -e "port = 3306" >> ${myCnf}
-		echo -e "socket = /tmp/mysql.sock" >> ${myCnf}
-		echo -e "datadir = /data/mysql" >> ${myCnf}
+		echo -e "## socket = /tmp/mysql.sock" >> ${myCnf}
+		echo -e "## datadir = /data/mysql" >> ${myCnf}
 		echo -e "old_passwords = 0" >> ${myCnf}
 		echo -e "lower_case_table_names = 1" >> ${myCnf}
 		echo -e "innodb_file_per_table" >> ${myCnf}
@@ -150,14 +150,14 @@
 		echo -e "# Innodb related parameters" >> ${myCnf}
 		echo -e "innodb_buffer_pool_size = ${innodbBufferPoolSize}G" >> ${myCnf}
 		echo -e "innodb_additional_mem_pool_size = 16M" >> ${myCnf}
-		echo -e "innodb_data_file_path = ibdata1:64M:autoextend" >> ${myCnf}
+		echo -e "## innodb_data_file_path = ibdata1:64M:autoextend" >> ${myCnf}
 		echo -e "innodb_write_io_threads = 8" >> ${myCnf}
 		echo -e "innodb_read_io_threads = 8" >> ${myCnf}
 		echo -e "innodb_thread_concurrency = 16" >> ${myCnf}
 		echo -e "innodb_flush_log_at_trx_commit = 0" >> ${myCnf}
 		echo -e "innodb_log_buffer_size = 8M" >> ${myCnf}
-		echo -e "innodb_log_file_size = 256M" >> ${myCnf}
-		echo -e "innodb_log_files_in_group = 3" >> ${myCnf}
+		echo -e "## innodb_log_file_size = 256M" >> ${myCnf}
+		echo -e "## innodb_log_files_in_group = 3" >> ${myCnf}
 		echo -e "innodb_lock_wait_timeout = 120" >> ${myCnf}
 		echo -e "" >> ${myCnf}
 		echo -e "[mysqldump]" >> ${myCnf}
