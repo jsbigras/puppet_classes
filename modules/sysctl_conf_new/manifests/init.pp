@@ -31,17 +31,13 @@
 class sysctl_conf_new ( $kernel_shmmax   = '68719476736',
                         $kernel_shmall   = '4294967296',
                         $vm_nr_hugepages = 'nd',
-                        $vm_hugetlb_shm_group = 'nd',
-                  	$my_role 	 = '<server role>' ) {
+                        $vm_hugetlb_shm_group = 'nd' ) {
 
 	file { '/etc/sysctl.conf':
 		owner	=> root,
 		group	=> root,
 		mode	=> 0644,
-		content	=> $lsbdistrelease ? {
-				/^5/ => template('sysctl_conf_new/sysctl.conf.RH5.erb'),
-				/^4/ => template('sysctl_conf_new/sysctl.conf.RH4.erb'),
-		}
+		content	=> template('sysctl_conf_new/sysctl.conf.RH5.erb'),
 	}
 
 	exec { '/sbin/sysctl -p':

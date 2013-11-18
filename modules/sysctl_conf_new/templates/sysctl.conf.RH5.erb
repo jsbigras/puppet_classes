@@ -54,7 +54,7 @@ net.ipv4.conf.default.send_redirects = 0
 
 net.ipv4.conf.default.forwarding = 0
 
-<% if classes.include? 'role_romeo_new' -%>
+<% if my_role == 'role_romeo_new' -%>
 # Romeo server specific config
 fs.file-max = 100000
 <% end -%>
@@ -73,12 +73,12 @@ net.ipv4.tcp_rmem = 8192 524288 209715
 net.ipv4.tcp_wmem = 8192 524288 209715
 <% end -%>
 
-<% if (classes.include? 'mysql::server')&&(!((classes.include? 'role_subms_new')||(classes.include? 'role_mu_new'))) -%>
+<% if (my_role == 'role_db_new')&&(!((my_role == 'role_subms_new')||(my_role == 'role_mu_new'))) -%>
 # MySQL specific parameters
 net.ipv4.ip_local_port_range = 12001 65535
 vm.hugetlb_shm_group = <%= vm_hugetlb_shm_group %>
 vm.nr_hugepages = <%= vm_nr_hugepages %>
-<% elsif classes.include? 'role_ps_new' -%>
+<% elsif my_role == 'role_ps_new' -%>
 # Push server specific config
 net.ipv4.ip_local_port_range = 1024 5999
 <% end %>
