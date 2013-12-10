@@ -1,0 +1,12 @@
+#%PAM-1.0
+auth       required     pam_stack.so service=system-auth
+auth       required     pam_nologin.so
+account    required     pam_stack.so service=system-auth
+password   required     pam_stack.so service=system-auth
+session    required     pam_stack.so service=system-auth
+session    required     pam_loginuid.so
+<% if architecture == 'x86_64' -%>
+session    required     /lib64/security/pam_mkhomedir.so skel=/etc/skel umask=0022
+<% else -%>
+session    required     /lib/security/pam_mkhomedir.so skel=/etc/skel umask=0022
+<% end -%>

@@ -12,8 +12,8 @@
 #       my_role => '<server role>',
 # }
 
-class users_new {
+class users_new ( $my_role = '<server role>' ) {
 
-	include users_new::config
+	include users_new::install, users_new::config, users_new::service
 
 } # End of class users_new

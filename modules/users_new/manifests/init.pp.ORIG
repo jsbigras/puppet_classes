@@ -1,5 +1,5 @@
-# Class: users::config
-# This module manages the configuration of the users creation in Messagin Gateway solution
+# Class: users
+# This module manages users creation in Messagin Gateway solution
 #
 # Parameters:
 #
@@ -12,15 +12,16 @@
 #       my_role => '<server role>',
 # }
 
-class users_new::config {
+class users_new ( $my_role = '<server role>' ) {
 
 	user { 'ozimps':
 		ensure		=> present,
 		uid		=> 500,
+#		password	=> '$1$XsMoPVHD$C9b.kdi4HbzvL4W9vxFzi1',
 		groups		=> undef,
 		comment		=> "${hostname} ozimps",
+		require		=> Package['ruby-shadow'],
 		managehome	=> true,
-		require		=> Class['users_new::install'],
 	}
 
 	user { 'panic':
@@ -29,8 +30,8 @@ class users_new::config {
 		groups		=> wheel,
 		password	=> '$1$54sGtoYR$97A95/c/v.nwmQhgTR/L70',
 		comment		=> "${hostname} we are in Trouble",
+		require		=> Package['ruby-shadow'],
 		managehome	=> true,
-		require		=> Class['users_new::install'],
 	}
 
 	if $my_role == 'db' {
@@ -53,6 +54,14 @@ class users_new::config {
 			ensure		=> present,
 			gid		=> 511,
 		}
+
+#		file { '/home/oracle/.bash_profile':
+#			ensure          => present,
+#			owner           => oracle,
+#			group           => oinstall,
+#			source          => 'puppet:///modules/users_new/.bash_profile.ORACLE',
+#			require         => User['oracle'],
+#		}
 	}
 
 	if defined(Class['mysql::server']) {
@@ -62,8 +71,8 @@ class users_new::config {
 			gid             => 510,
 			groups          => ['mysql'],
 			comment         => "${hostname} mysql",
-			managehome      => true,
 			require         => Group['mysql'],
+			managehome      => true,
 		}
 
 		group { 'mysql':
@@ -74,6 +83,43 @@ class users_new::config {
 
 	user { 'root':
 		comment		=> $hostname,	
+	}
+
+	package { 'ruby-shadow':
+		ensure		=> present,
+		provider	=> yum,
+	}
+
+	package { 'oddjob':
+		ensure		=> present,
+		provider	=> yum,
+		require         => Package['dbus'],
+	}
+
+	package { 'dbus':
+		ensure          => present,
+		provider        => yum,
+	}
+
+	service { 'dbus':
+		ensure          => 'running',
+		enable          => 'true',
+		name            => 'messagebus',
+		status		=> '/etc/init.d/messagebus status',
+		require         => Package['dbus'],
+	}
+
+	service { 'oddjobd':
+		ensure          => $lsbdistrelease ? {
+				   /^5/ => 'running',
+				   /^4/ => 'stopped',
+		},
+		enable          => $lsbdistrelease ? {
+				   /^5/ => 'true',
+				   /^4/ => 'false',
+		},
+		require		=> Package['oddjob'],
+		hasstatus	=> true,
 	}
 
 	# "File" Type is a code compresiion technique which defined default value to be used within this scope.
@@ -136,7 +182,6 @@ class users_new::config {
 	augeas { 'logins.defs':
 		context         => '/files/etc/login.defs',
 		changes         => ['set UID_MAX 999', 'set GID_MAX 999'],
-		require		=> Class['users_new::install'],
 	}
 
-} # End of class users_new::config
+} # End of class users_new
