@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<CONFIGURATION service="caching">
+    <caches>
+        <cache id="tokens">
+            <memory max-size="<%= tokensmemmaxsize %>"/>
+        </cache>
+        <cache id="store_user_owned_data">
+            <remote type="cacheserver">
+                <http-client>
+                    <read-timeout-ms>1000</read-timeout-ms>
+                    <connect-timeout-ms>1000</connect-timeout-ms>
+                </http-client>
+<% if cache_secondary != '' -%>
+                <store uri="http://<%= cache_primary %>:<%= l_port_cache %>/nmp-cache, http://<%= cache_secondary %>:<%= l_port_cache %>/nmp-cache"/>
+<% else -%>
+                <store uri="http://<%= cache_primary %>:<%= l_port_cache %>/nmp-cache, http://<%= cache_primary %>:<%= l_port_cache %>/nmp-cache"/>
+<% end -%>
+            </remote>
+        </cache>
+        <cache id="store_product_sync">
+            <remote type="cacheserver">
+                <http-client>
+                    <read-timeout-ms>1000</read-timeout-ms>
+                    <connect-timeout-ms>1000</connect-timeout-ms>
+                </http-client>
+<% if cache_secondary != '' -%>
+                <store uri="http://<%= cache_primary %>:<%= l_port_cache %>/nmp-cache, http://<%= cache_secondary %>:<%= l_port_cache %>/nmp-cache"/>
+<% else -%>
+                <store uri="http://<%= cache_primary %>:<%= l_port_cache %>/nmp-cache, http://<%= cache_primary %>:<%= l_port_cache %>/nmp-cache"/>
+<% end -%>
+            </remote>
+        </cache>
+    </caches>
+</CONFIGURATION>
