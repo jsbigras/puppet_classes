@@ -8,7 +8,7 @@ class check_mk {
                 mode		=> 0644,
                 source		=> 'puppet:///modules/check_mk/check_mk',
         }
-        file { ' /usr/bin/check_mk_agent':
+        file { '/usr/bin/check_mk_agent':
                 owner		=> root,
                 group		=> root,
                 mode		=> 0755,
