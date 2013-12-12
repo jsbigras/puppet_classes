@@ -21,11 +21,8 @@
 # $int_vip_cluster: Alias used to reach the cluster virtual IP.
 # $int_vip_cluster = 'tbd'
 #
-# $db_master: Master DB.
-# $db_master = 'tbd'
-#
-# $db_slave: Slave DB.
-# $db_slave = 'tbd'
+# $db_vip: DB vip.
+# $db_vip = 'tbd'
 #
 # $db_pwd: Database root password.
 # $db_pwd = 'tbd'
@@ -45,8 +42,7 @@
 #	v_port_cstore_admin     => '3031',
 #	v_port_aaa_admin        => '3023',
 #       int_vip_cluster         => '10.33.64.181',
-#	db_master		=> 'tbd'
-#	db_slave		=> 'tbd'
+#	db_vip			=> 'tbd'
 #	db_pwd			=> 'tbd'
 #	sch_pwd			=> 'tbd'
 #	sch_sql_col_tbl		=> 'tbd'
@@ -60,8 +56,7 @@ class cmp (	$stage			= post,
 		$v_port_cstore_admin    = '3031',
 		$v_port_aaa_admin       = '3023',
 		$int_vip_cluster	= '10.33.64.181',
-		$db_master		= 'tbd',
-		$db_slave		= 'tbd',
+		$db_vip			= 'tbd',
 		$db_pwd			= 'tbd',
 		$sch_pwd		= 'tbd',
 		$sch_sql_col_tbl	= [] ) {
