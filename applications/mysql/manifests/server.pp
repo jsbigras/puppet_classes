@@ -13,31 +13,29 @@
 #       stage                   => post,
 # }
 
-class mysql::server {
-	require set_repos_new
-	require bc
-	require users_new
+class mysql::server (   $stage			= post,
+			$version                = '5.5.28-1.rhel5' ) {
 
 	# We include the client rpm to the MySQL server too.
 	include mysql::client, mysql::config, mysql::service
 
 	package { "MySQL-devel":
-		ensure		=> $version,
+		ensure		=> "${version}",
 		provider	=> yum,
 	}	
 
 	package { "MySQL-server":
-		ensure		=> $version,
+		ensure		=> "${version}",
 		provider	=> yum,
 	}	
 
 	package { "MySQL-shared":
-		ensure		=> $version,
+		ensure		=> "${version}",
 		provider	=> yum,
 	}	
 
 	package { "MySQL-shared-compat":
-		ensure		=> $version,
+		ensure		=> "${version}",
 		provider	=> yum,
 	}	
 

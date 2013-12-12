@@ -13,7 +13,7 @@
 #       stage			=> post,
 # }
 
-class mysql  {
+class mysql (	$version		= '5.5.28-1.rhel5' ) {
 
 	include mysql::client
 

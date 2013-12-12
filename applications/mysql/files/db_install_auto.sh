@@ -92,7 +92,7 @@
 		echo -e "# Configure server port and socket" >> ${myCnf}
 		echo -e "port = 3306" >> ${myCnf}
 		echo -e "## socket = /tmp/mysql.sock" >> ${myCnf}
-		echo -e "## datadir = /data/mysql" >> ${myCnf}
+		echo -e "datadir = /data/mysql" >> ${myCnf}
 		echo -e "old_passwords = 0" >> ${myCnf}
 		echo -e "lower_case_table_names = 1" >> ${myCnf}
 		echo -e "innodb_file_per_table" >> ${myCnf}
@@ -156,8 +156,8 @@
 		echo -e "innodb_thread_concurrency = 16" >> ${myCnf}
 		echo -e "innodb_flush_log_at_trx_commit = 0" >> ${myCnf}
 		echo -e "innodb_log_buffer_size = 8M" >> ${myCnf}
-		echo -e "## innodb_log_file_size = 256M" >> ${myCnf}
-		echo -e "## innodb_log_files_in_group = 3" >> ${myCnf}
+		echo -e "innodb_log_file_size = 256M" >> ${myCnf}
+		echo -e "innodb_log_files_in_group = 3" >> ${myCnf}
 		echo -e "innodb_lock_wait_timeout = 120" >> ${myCnf}
 		echo -e "" >> ${myCnf}
 		echo -e "[mysqldump]" >> ${myCnf}
