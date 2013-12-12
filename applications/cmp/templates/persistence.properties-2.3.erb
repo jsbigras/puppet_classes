@@ -1,6 +1,6 @@
 db.driverClass=com.mysql.jdbc.Driver
 # format jdbc:mysql://[hostname or ip]:[port]/[database name]
-db.url=jdbc:mysql://<%= db_master %>:3306/<%= sch_sql_col_tbl.at(0) %>
+db.url=jdbc:mysql://<%= db_vip %>:3306/<%= sch_sql_col_tbl.at(0) %>
 db.username=<%= sch_sql_col_tbl.at(0) %>
 db.password=<%= sch_pwd %>
 

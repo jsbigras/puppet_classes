@@ -92,30 +92,30 @@ class cmp::config {
 
 # Create DB and User in the cluster database
 	exec { 'create_db':
-		command		=> "mysql -uroot -p${db_pwd} -h${db_master} -e \"create database ${sch_sql_col_tbl[0]} character set latin1 collate latin1_bin;\"",
+		command		=> "mysql -uroot -p${db_pwd} -h${db_vip} -e \"create database ${sch_sql_col_tbl[0]} character set latin1 collate latin1_bin;\"",
 		path		=> ['/bin', '/usr/bin'],
-		unless		=> "mysql ${sch_sql_col_tbl[0]} -uroot -psynchronica -h${db_master}",
+		unless		=> "mysql ${sch_sql_col_tbl[0]} -uroot -psynchronica -h${db_vip}",
 		require		=> Class['cmp::install'],
 	}
 
 	exec { 'create_user':
-		command		=> "mysql -uroot -p${db_pwd} -h${db_master} -e \"create user ${sch_sql_col_tbl[0]}@'%' identified by '${sch_pwd}';\"",
+		command		=> "mysql -uroot -p${db_pwd} -h${db_vip} -e \"create user ${sch_sql_col_tbl[0]}@'%' identified by '${sch_pwd}';\"",
 		path		=> ['/bin', '/usr/bin'],
-		unless		=> "mysql -u${sch_sql_col_tbl[0]} -p${sch_pwd} -h${db_master}",
+		unless		=> "mysql -u${sch_sql_col_tbl[0]} -p${sch_pwd} -h${db_vip}",
 		require		=> Exec['create_db'],
 	}
 
 	exec { 'grant_user2db':
-		command		=> "mysql -uroot -p${db_pwd} -h${db_master} -e \"grant all on ${sch_sql_col_tbl[0]}.* to ${sch_sql_col_tbl[0]}@'%' identified by '${sch_pwd}' with grant option;\";mysql -uroot -p${db_pwd} -h${db_master} -e \"grant select,insert,update on mysql.proc to ${sch_sql_col_tbl[0]}@'%' identified by '${sch_pwd}';\"", 
+		command		=> "mysql -uroot -p${db_pwd} -h${db_vip} -e \"grant all on ${sch_sql_col_tbl[0]}.* to ${sch_sql_col_tbl[0]}@'%' identified by '${sch_pwd}' with grant option;\";mysql -uroot -p${db_pwd} -h${db_vip} -e \"grant select,insert,update on mysql.proc to ${sch_sql_col_tbl[0]}@'%' identified by '${sch_pwd}';\"", 
 		path		=> ['/bin', '/usr/bin'],
-		unless		=> "mysql ${sch_sql_col_tbl[0]} -u${sch_sql_col_tbl[0]} -p${sch_pwd} -h${db_master}",
+		unless		=> "mysql ${sch_sql_col_tbl[0]} -u${sch_sql_col_tbl[0]} -p${sch_pwd} -h${db_vip}",
 		require		=> Exec['create_user'],
 	}
 
         exec { 'create_tables':
-                command         => "mysql ${sch_sql_col_tbl[0]} -u${sch_sql_col_tbl[0]} -p${sch_pwd} -h${db_master} < /opt/tomcat/webapps/cmp/WEB-INF/classes/scripts/${sch_sql_col_tbl[1]}",
+                command         => "mysql ${sch_sql_col_tbl[0]} -u${sch_sql_col_tbl[0]} -p${sch_pwd} -h${db_vip} < /opt/tomcat/webapps/cmp/WEB-INF/classes/scripts/${sch_sql_col_tbl[1]}",
                 path            => ['/bin', '/usr/bin'],
-                unless          => "mysql ${sch_sql_col_tbl[0]} -u${sch_sql_col_tbl[0]} -p${sch_pwd} -h${db_master} -e \"select ${sch_sql_col_tbl[2]} from ${sch_sql_col_tbl[3]};\"",
+                unless          => "mysql ${sch_sql_col_tbl[0]} -u${sch_sql_col_tbl[0]} -p${sch_pwd} -h${db_vip} -e \"select ${sch_sql_col_tbl[2]} from ${sch_sql_col_tbl[3]};\"",
                 require         => Exec['grant_user2db'],
         }
 
