@@ -53,7 +53,8 @@
 #	stage			=> post,
 # }
 
-class cmp (	$unity_branch		= '1.0',
+class cmp (	$stage			= post,
+		$unity_branch		= '1.0',
 		$yum_server1		= '172.16.36.101',
 		$l_port_cmp		= '3032',
 		$v_port_cstore_admin    = '3031',
