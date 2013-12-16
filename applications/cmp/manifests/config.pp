@@ -16,7 +16,7 @@ class cmp::config {
 				&& su - ozimps -c \' dos2unix /opt/tomcat/webapps/cmp/WEB-INF/classes/content-store.properties*\'',
 		path		=> ['/bin', '/usr/bin'],
 		unless		=> 'ls /opt/tomcat/webapps/cmp/WEB-INF/classes/content-store.properties.ORIG',
-		require		=> Exec['unzip_cmp'],
+		require		=> Class['cmp::install'],
 	}
 
 	exec { 'persistence.properties.ORIG':
@@ -24,7 +24,7 @@ class cmp::config {
 				&& su - ozimps -c \' dos2unix /opt/tomcat/webapps/cmp/WEB-INF/classes/persistence.properties*\'',
 		path		=> ['/bin', '/usr/bin'],
 		unless		=> 'ls /opt/tomcat/webapps/cmp/WEB-INF/classes/persistence.properties.ORIG',
-		require		=> Exec['unzip_cmp'],
+		require		=> Class['cmp::install'],
 	}
 
         exec { 'server.xml.ORIG':
@@ -32,7 +32,7 @@ class cmp::config {
                                 && su - ozimps -c \' dos2unix /opt/tomcat/conf/server.xml*\'',
                 path            => ['/bin', '/usr/bin'],
                 unless          => 'ls /opt/tomcat/conf/server.xml.ORIG',
-                require         => Exec['unzip_cmp'],
+                require         => Class['cmp::install'],
         }
 
 	file { 'content-store.properties':

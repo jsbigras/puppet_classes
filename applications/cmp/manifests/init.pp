@@ -6,9 +6,6 @@
 # $unity_branch: The unity branch number
 # $unity_branch		= '1.0'
 #
-# $yum_server1: Yum server
-# $yum_server = '172.16.36.101'
-#
 # $l_port_cmp: Listening port for the cmp.
 # $l_port_cmp = '3032'
 #
@@ -37,7 +34,6 @@
 #
 # class { cmp:
 #	unity_branch		=> '1.0',
-#	yum_server1		=> '172.16.36.101'
 #	l_port_cmp		=> '3032',
 #	v_port_cstore_admin     => '3031',
 #	v_port_aaa_admin        => '3023',
@@ -51,7 +47,6 @@
 
 class cmp (	$stage			= post,
 		$unity_branch		= '1.0',
-		$yum_server1		= '172.16.36.101',
 		$l_port_cmp		= '3032',
 		$v_port_cstore_admin    = '3031',
 		$v_port_aaa_admin       = '3023',
