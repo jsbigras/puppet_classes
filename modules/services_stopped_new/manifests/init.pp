@@ -67,4 +67,9 @@ class services_stopped_new {
 		enable		=> false,
 	}	
 
+	service { 'iptables':
+		ensure		=> stopped,
+		enable		=> false,
+	}	
+
 }

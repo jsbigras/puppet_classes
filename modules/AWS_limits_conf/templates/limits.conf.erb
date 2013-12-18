@@ -49,37 +49,7 @@
 
 * soft core 1000000
 * hard core 1000000
-<% if (my_role == 'role_db_new')&&(!((my_role == 'role_subms_new')||(my_role == 'role_mu_new'))) %>
-# Add mysql server parameters
-root       soft     memlock     unlimited
-root       hard     memlock     unlimited
-
-mysql   soft    memlock <%= memlock %>
-mysql   hard    memlock <%= memlock %>
-<% end -%>
-<% if my_role == 'role_cdw_new' %>
-# Add cdw server parameters
-ozimps soft nofile <%= nofile %>
-ozimps hard nofile <%= nofile %>
-
-ozimps soft nproc <%= nproc %>
-ozimps hard nproc <%= nproc %>
-
-* soft    nproc   100
-* hard    nproc   150
-<% end -%>
-<% if my_role == 'role_romeo_new' %>
-# Add romeo server parameters
-* soft nofile 100000
-* hard nofile 100000
-
-romeo soft nofile 650000
-romeo hard nofile 650000
-
-romeo soft nproc 25000
-romeo hard nproc 25000
-<% end -%>
-<% if (my_role == 'role_imps_app_new')||(my_role == 'role_imps_fe_new') %>
+<% if (my_role == 'role_imps_app')||(my_role == 'role_imps_fe') %>
 # Add imps server parameters
 root   soft    nofile  524288
 root   hard    nofile  524288
@@ -90,12 +60,12 @@ root   hard    nproc   524288
 root   soft    core    unlimited
 root   hard    core    unlimited
 <% end -%>
-<% if my_role == 'puppet' %>
-# Add Puppet master parameters
-activemq soft nproc 10000
-activemq hard nproc 10000
-<% end -%>
-<% if !(my_role == 'role_db_new')||(my_role == 'role_subms_new')||(my_role == 'role_mu_new') %>
+#<% if my_role == 'puppet' %>
+## Add Puppet master parameters
+#activemq soft nproc 10000
+#activemq hard nproc 10000
+#<% end -%>
+
 # Add regular server parameters
 ozimps soft nofile <%= nofile %>
 ozimps hard nofile <%= nofile %>
@@ -105,5 +75,4 @@ ozimps hard nproc <%= nproc %>
 
 * soft    nproc   100
 * hard    nproc   150
-<% end %>
 # End of file

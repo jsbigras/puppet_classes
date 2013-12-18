@@ -26,7 +26,8 @@
 
 class AWS_limits_conf (	$nofile  = '650000',
 			$nproc   = '25000',
-			$memlock = 'nd' ) {
+			$memlock = 'nd',
+			$my_role = '<server role>' ) {
 
 # "File" Type is a code compression technique which defined default value to be used within this scope.
 	File {
