@@ -10,7 +10,7 @@
 
 class aws_users::install {
 
-	package { 'ruby-shadow':
+	package { 'pe-ruby-shadow':
 		ensure		=> present,
 		provider	=> yum,
 	}

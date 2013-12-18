@@ -20,22 +20,22 @@ class mysql::server (   $stage			= post,
 	include mysql::client, mysql::config, mysql::service
 
 	package { 'MySQL-devel':
-		ensure		=> ${version},
+		ensure		=> $version,
 		provider	=> yum,
 	}	
 
 	package { 'MySQL-server':
-		ensure		=> ${version},
+		ensure		=> $version,
 		provider	=> yum,
 	}	
 
 	package { 'MySQL-shared':
-		ensure		=> ${version},
+		ensure		=> $version,
 		provider	=> yum,
 	}	
 
 	package { 'MySQL-shared-compat':
-		ensure		=> ${version},
+		ensure		=> $version,
 		provider	=> yum,
 	}	
 
