@@ -45,8 +45,7 @@
 #	stage			=> post,
 # }
 
-class cmp (	$stage			= post,
-		$unity_branch		= '1.0',
+class cmp (	$unity_branch		= '1.0',
 		$l_port_cmp		= '3032',
 		$v_port_cstore_admin    = '3031',
 		$v_port_aaa_admin       = '3023',
