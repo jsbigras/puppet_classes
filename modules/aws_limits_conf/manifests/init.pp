@@ -24,7 +24,7 @@
 #       my_role => '<server role>',
 # }
 
-class AWS_limits_conf (	$nofile  = '650000',
+class aws_limits_conf (	$nofile  = '650000',
 			$nproc   = '25000',
 			$memlock = 'nd',
 			$my_role = '<server role>' ) {
@@ -43,8 +43,8 @@ class AWS_limits_conf (	$nofile  = '650000',
         }
 
 	file { '/etc/security/limits.conf':
-		content		=> template('AWS_limits_conf/limits.conf.erb'),
+		content		=> template('aws_limits_conf/limits.conf.erb'),
 		require		=> Exec['limit.conf.ORIG'],
 	}
 
-} # End of class AWS_limits_conf
+} # End of class aws_limits_conf

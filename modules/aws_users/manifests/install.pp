@@ -8,7 +8,7 @@
 # class { 'users':
 # }
 
-class AWS_users::install {
+class aws_users::install {
 
 	package { 'ruby-shadow':
 		ensure		=> present,
@@ -26,4 +26,4 @@ class AWS_users::install {
 		require         => Package['dbus'],
 	}
 
-} # End of class AWS_users::install
+} # End of class aws_users::install

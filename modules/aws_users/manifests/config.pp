@@ -8,7 +8,7 @@
 # class { 'users':
 # }
 
-class AWS_users::config {
+class aws_users::config {
 
 	user { 'ozimps':
 		ensure		=> present,
@@ -16,7 +16,7 @@ class AWS_users::config {
 		groups		=> undef,
 		comment		=> "${hostname} ozimps",
 		managehome	=> true,
-		require		=> Class['users_new::install'],
+		require		=> Class['aws_users::install'],
 	}
 
-} # End of class AWS_users::config
+} # End of class aws_users::config

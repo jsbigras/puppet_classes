@@ -16,7 +16,7 @@
 #       my_role => 'tbd',
 # }
 
-class AWS_set_repos ( 	$yum_server1  = '172.16.36.101',
+class aws_set_repos ( 	$yum_server1  = '172.16.36.101',
                         $my_role = 'tbd' ) {
 
 	if $my_role != 'tbd' {
@@ -28,4 +28,4 @@ class AWS_set_repos ( 	$yum_server1  = '172.16.36.101',
 		}
 	}
 
-} # End of class AWS_set_repos
+} # End of class aws_set_repos

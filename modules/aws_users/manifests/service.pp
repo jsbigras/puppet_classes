@@ -8,21 +8,21 @@
 # class { 'users':
 # }
 
-class AWS_users::service {
+class aws_users::service {
 
 	service { 'dbus':
 		ensure          => 'running',
 		enable          => 'true',
 		name            => 'messagebus',
 		status		=> '/etc/init.d/messagebus status',
-		require         => Class['users_new::install'],
+		require         => Class['aws_users::install'],
 	}
 
 	service { 'oddjobd':
 		ensure          => 'running',
 		enable          => 'true',
 		hasstatus	=> true,
-		require		=> Class['AWS_users::install'],
+		require		=> Class['aws_users::install'],
 	}
 
-} # End of class AWS_users::service
+} # End of class aws_users::service

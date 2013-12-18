@@ -8,8 +8,8 @@
 # class { 'users':
 # }
 
-class AWS_users {
+class aws_users {
 
-	include AWS_users::install, AWS_users::config, AWS_users::service
+	include aws_users::install, aws_users::config, aws_users::service
 
-} # End of class AWS_users
+} # End of class aws_users
