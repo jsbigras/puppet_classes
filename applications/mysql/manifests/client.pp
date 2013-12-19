@@ -1,6 +1,6 @@
 # client.pp
 
-class mysql::client {
+class mysql::client inherits mysql {
 
 	package { 'MySQL-client':
 		ensure		=> $version,

@@ -2,7 +2,7 @@
 # This module manages the configuration of the unity cmp on the server.
 #
 
-class cmp::config {
+class cmp::config inherits cmp {
 
 # "File" Type is a code compression technique which defined default value to be used within this scope.
 	File {
@@ -49,12 +49,12 @@ class cmp::config {
 		require		=> Exec['persistence.properties.ORIG'],
 	}
 
-        file { 'server.xml':
-                ensure          => present,
-                path            => '/opt/tomcat/conf/server.xml',
-                content         => template("cmp/server.xml-${unity_branch}.erb"),
-                require         => Exec['server.xml.ORIG'],
-        }
+	file { 'server.xml':
+		ensure		=> present,
+		path		=> '/opt/tomcat/conf/server.xml',
+		content		=> template("cmp/server.xml-${unity_branch}.erb"),
+		require		=> Exec['server.xml.ORIG'],
+	}
 
 # Create cmp directories
         file { '/opt/myriad':

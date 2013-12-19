@@ -13,11 +13,15 @@
 #       stage                   => post,
 # }
 
-class mysql::server (   $stage			= post,
-			$version                = '5.6.14-1.rhel5' ) {
+class mysql::server (   $version                = '5.6.14-1.rhel5' ) {
 
 	# We include the client rpm to the MySQL server too.
-	include mysql::client, mysql::config, mysql::service
+	include mysql::config, mysql::service
+
+	package { 'MySQL-client':
+		ensure		=> $version,
+		provider	=> yum,
+	}
 
 	package { 'MySQL-devel':
 		ensure		=> $version,
