@@ -108,7 +108,7 @@ node /^demo-v-cstore-\d+/ inherits global_specific_aws {
 	include role_general
 }
 
-node 'ip-10-110-221-71' inherits global_specific_aws {
+node 'ip-172-31-41-103' inherits global_specific_aws {
         $s_hosts_file = 'hosts.demo.erb'        # Host file template filename
         $s_my_role = 'cmp'                      # We need to add it, used in module facts/manifests/init.pp:18
                                                 # We need to add it, used in module users/manifests/init.pp:37/186

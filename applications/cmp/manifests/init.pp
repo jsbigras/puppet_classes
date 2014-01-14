@@ -55,6 +55,6 @@ class cmp (	$unity_branch		= '1.0',
 		$sch_pwd		= 'tbd',
 		$sch_sql_col_tbl	= [] ) {
 
-	include cmp::install, cmp::config, cmp::service
+	include cmp::install#, cmp::config, cmp::service
 
 } # End of class cmp

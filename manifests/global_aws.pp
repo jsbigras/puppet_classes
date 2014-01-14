@@ -16,7 +16,7 @@ node 'global_aws' {
 #	$g_mc_server		= 'suwpuppet01.mt2.suw.hostings.ops'			# mcollective server
 #	$g_mc_user		= 'mcollective'						# mcollective username
 #	$g_mc_password		= 'marionette'						# mcollective password
-	$g_yum_server1		= 'ec2-54-209-85-155.compute-1.amazonaws.com'		# Yum servers
+	$g_yum_server1		= 'ip-172-31-37-161.ec2.internal'			# Yum servers
 #	$g_auth_server1_name	= 'ad14.hosting.ops'					# Active Directory server 1 name
 #	$g_auth_server1_ip	= '192.168.130.101'					# Active Directory server 1 IP
 #	$g_auth_server2_name	= 'ad16.hosting.ops'					# Active Directory server 2 name
